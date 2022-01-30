@@ -447,6 +447,7 @@ body {
 .cont {
 	background: #f7f0f0;
 	padding-bottom: 30px;
+	max-width: 100%;
 }
 .contacts {
 	display: inline-block;
@@ -516,7 +517,6 @@ body {
 		height: 50px;
 	}
 	.cont {
-		max-width: 100%;
 		padding-bottom: 20px;
 	}
 	.contacts__title {
