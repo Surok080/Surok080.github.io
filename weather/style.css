@@ -13,6 +13,7 @@ body {
 	text-align: center;
 }
 .city {
+	padding: 0px 10px;
 	color: #fff;
 	width: 50%;
 	height: 30px;
