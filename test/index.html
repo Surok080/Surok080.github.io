@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Junior Frontend</title>
+	<style>
+		body {
+			margin: 200px auto;
+			padding: 0;
+			text-align: center;
+			background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+			min-height: 100vh;
+		}
+
+		.text {
+			display: inline-block;
+		}
+
+		h1,
+		h2 {
+			color: #fff;
+			cursor: pointer;
+			text-shadow: 2px 5px 1px rgba(105, 105, 105, 0.3);
+			transition: all .5s;
+		}
+
+		h1:hover,
+		h2:hover {
+			color: #f1f1f1;
+			transform: translateY(3px);
+			text-shadow: 2px 2px 1px rgba(105, 105, 105, 0.3);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="text">
+		<h1>Krivov Alexander</h1>
+		<h2>Начинающий web-программист / Junior Frontend Developer</h2>
+	</div>
+
+</body>
+<script>
+	addEventListener("click", function () {
+		document.querySelector('.text').style.opacity = "0";
+	});
+
+
+	var kinput = document.body;
+	kinput.onkeyup = delText;
+
+	function delText(e) {
+		if (e.keyCode == 32) {
+			let del = document.querySelector('.text')
+			del.remove();
+		}
+	}
+</script>
+
+</html>
