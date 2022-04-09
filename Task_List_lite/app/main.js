@@ -71,23 +71,27 @@ const readyTask = key => {
 
 
 addTaskBtn.addEventListener('click', () => {
-	if (taskTextInput.value) {
+	if (taskTextInput.value && (/[a-zа-яё]/i.test(taskTextInput.value) || /[0-9]/.test(taskTextInput.value))) {
 		tasks.push(new Task(taskTextInput.value));
 		loadLocal();
 		addHtmlContent();
+		taskTextInput.value = '';
+	} else {
 		taskTextInput.value = '';
 	}
 })
 
 const chekEnter = (key) => {
 	let check = key.keyCode || key.which;
-	if (taskTextInput.value) {
+	if (taskTextInput.value && (/[a-zа-яё]/i.test(taskTextInput.value) || /[0-9]/.test(taskTextInput.value))) {
 		if (check === 13) {
 			tasks.push(new Task(taskTextInput.value));
 			loadLocal();
 			addHtmlContent();
 			taskTextInput.value = '';
 		}
+	} else {
+		taskTextInput.value = '';
 	}
 }
 
@@ -124,6 +128,5 @@ readyAllTask.addEventListener('click', () => {
 	}
 	loadLocal();
 	addHtmlContent();
-	console.log(tasks.every(elem => elem.status));
 })
 
