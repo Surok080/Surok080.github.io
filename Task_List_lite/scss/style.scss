@@ -115,6 +115,8 @@ padding: 10px 0;
 		}
 
 		&__text {
+			word-wrap: break-word;
+			max-width: 230px;
 			padding:0 10px 10px;
 		}
 

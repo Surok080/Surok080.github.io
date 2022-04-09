@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(/Users/aleksandrkrivov/Documents/Programm/Task_List_lite/scss/rest.css);
+@import url(/Users/aleksandrkrivov/Documents/Programm/GitHub_io/surok080.github.io/Task_List_lite/scss/rest.css);
 body {
   background-color: rgba(122, 105, 105, 0.382);
 }
@@ -153,6 +153,8 @@ body {
 }
 
 .task__text {
+  word-wrap: break-word;
+  max-width: 230px;
   padding: 0 10px 10px;
 }
 
