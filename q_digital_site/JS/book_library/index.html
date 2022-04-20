@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
 </head>
 
 <body>
-	<form method="post" enctype="multipart/form-data">
-		<input type="file" name="files" multiple />
-		<input type="submit" value="Upload File" name="submit" />
-	</form>
-	<script src="app/app.js"></script>
+
+   <form method="post" enctype="multipart/form-data">
+      <p><input id="check_sam" type="radio" name="file" value='1' />Написать самому</p>
+      <p><input id="check_down" type="radio" name="file" checked value='2' />Загрузить из файла</p>
+   </form>
+
+
+   <form id="download-file" method="post" enctype="multipart/form-data">
+      <input id="file" type="file" multiple /><br />
+      <input type="submit" value="Загрузить" name="submit" />
+   </form>
+
+
+   <form style="display:none" id="download-write" method="post" enctype="multipart/form-data">
+      <p>Название<br />
+         <input type="text" />
+      </p><br />
+      <p>Текст книги <br>
+         <textarea readonly="readonly" name="textarea" id="textarea" cols="30" rows="10">
+         </textarea>
+      </p>
+      <input id="push-write" type="button" value="Опубликовать" />
+   </form>
+
+
+   <script src="app/app.js"></script>
 </body>
 
 </html>

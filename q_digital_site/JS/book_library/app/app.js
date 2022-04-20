@@ -1,13 +1,32 @@
+
+let radio = document.getElementsByName('file');
+for (let i = 0; i < radio.length; i++) {
+	radio[i].onchange = testRadio;
+}
+
+function testRadio() {
+	const inputDow = document.getElementById('download-file');
+	const inputWrit = document.getElementById('download-write');
+	console.log(this.value);
+	console.log(inputDow);
+	if (this.value == 1) {
+		inputDow.setAttribute("style", "display:none");
+		inputWrit.setAttribute("style", "display:block");
+	} else if (this.value == 2) {
+		inputDow.setAttribute("style", "display:block");
+		inputWrit.setAttribute("style", "display:none");
+	}
+
+}
+
 const url = 'https://apiinterns.osora.ru/';
-const form = document.querySelector('form')
+const form = document.getElementById('download-file')
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault()
 
 	const files = document.querySelector('[type=file]').files[0];
 	const formData = new FormData();
-	console.log(formData);
-
 
 	formData.append("login", "Groucho");
 	formData.append("file", files);
@@ -17,76 +36,8 @@ form.addEventListener('submit', (e) => {
 		body: formData,
 	}).then(response => response.json())
 		.then(response => {
-			console.log(response);
-			console.log(response.text);
+			
 		})
 
 })
-// .then(response => response.json())
-//   .then(result => /* обрабатываем результат */)
 
-// document.querySelector('button').addEventListener('click', function () {
-// 	let files = document.getElementById('file').files[0];
-// 	let reader = new FileReader();
-// 	const formData = new FormData();
-
-// 	reader.readAsText(files);
-// 	reader.onload = function () {
-
-// 		formData.append("login", "Groucho");
-// 		formData.append("file", files);
-
-// 		fetch('https://apiinterns.osora.ru/', {
-// 			method: 'POST',
-// 			body: formData,
-// 		}).then((response) => {
-// 			console.log(response)
-// 		})
-
-// 	}
-// 	reader.onerror = function () {
-// 		console.log(reader.error);
-// 	}
-// })
-
-
-// function t10(file) {
-
-// 	fetch('https://apiinterns.osora.ru/', {
-// 		method: 'POST',
-// 		body: file,
-// 	}).then((response) => {
-// 		console.log(response)
-// 	})
-
-
-
-	// console.log(file);
-	// fetch(`https://apiinterns.osora.ru/`, {
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/x-www-form-urlencoded',
-	// 	},
-	// 	body: `login=Sasha&file=${file}`
-	// })
-	// 	.then(data => data.text())
-	// 	.then(data => {
-	// 		console.log(data);
-	// 	})
-// }
-
-// document.querySelector('button').addEventListener('click', function () {
-// 	let file = document.getElementById('file').file[0];
-// 	// let file = input.files[0];
-// 	let reader = new FileReader();
-
-// 	reader.readAsText(file);
-
-// 	reader.onload = function () {
-// 		console.log(reader.result);
-// 	};
-
-// 	reader.onerror = function () {
-// 		console.log(reader.error);
-// 	};
-// })
