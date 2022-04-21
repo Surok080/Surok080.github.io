@@ -59,6 +59,8 @@ const deleteBook = index => {
 const saveEditBook = index => {
 	let textareaBook = document.getElementById('book-reading');
 	books[index].description = textareaBook.value;
+	bookReading.innerHTML = '';
+	bookReading.innerHTML = createReading(books[index], index, false);
 	reloadWindow();
 }
 
