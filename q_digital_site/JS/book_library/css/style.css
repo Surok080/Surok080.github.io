@@ -1,0 +1,92 @@
+body {
+}
+.wrapper {
+	width: 100%;
+	max-width: 1200px;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+}
+.left-section {
+	padding: 20px;
+	flex: 0 0 40%;
+	background-color: rgba(50, 255, 0, 0.21);
+}
+
+.book-list__items {
+	background-color: white;
+}
+.book-list__items .delition {
+	animation: opacity 1s linear;
+}
+.book-list__item {
+	border: 1px solid #000;
+	justify-content: space-between;
+	display: flex;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+.book-list__title {
+	font-size: 20px;
+}
+
+.book-list__redaction,
+.book-list__complite,
+.book-list__read,
+.book-list__del {
+	background-color: grey;
+	font-size: 20px;
+	margin: 0 4px;
+	padding: 2px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	line-height: 1;
+}
+.book-list__control {
+	display: flex;
+}
+.book-list__redaction {
+}
+.book-list__complite {
+}
+.book-list__read {
+}
+.book-list__del {
+}
+#book-text {
+	width: 300px;
+	height: 200px;
+}
+#file {
+	margin-bottom: 10px;
+}
+.rigth-section {
+	padding: 20px;
+	text-align: center;
+	margin: 0 auto;
+	flex: 0 0 60%;
+	background-color: rgba(255, 255, 0, 0.21);
+}
+#book-reading {
+	width: 100%;
+	min-height: 400px;
+	padding: 10px;
+}
+#book-reading__btn {
+	padding: 10px;
+	background-color: rgba(255, 255, 0, 0.21);
+	border: 1px solid #000;
+	cursor: pointer;
+}
+.hide {
+	background-color: black;
+}
+@keyframes opacity {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
