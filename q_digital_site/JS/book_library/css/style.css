@@ -14,7 +14,8 @@ body {
 	background-color: rgba(50, 255, 0, 0.21);
 }
 
-.book-list__items {
+.book-list__items,
+.book-list__items-like {
 	background-color: white;
 }
 .book-list__items .delition {
@@ -89,4 +90,12 @@ body {
 	to {
 		opacity: 0;
 	}
+}
+
+.book-list__drop-zone{
+	line-height: 50px;
+	text-align: center;
+	height: 50px;
+	width: 100%;
+	border: 1px dotted #000;	
 }

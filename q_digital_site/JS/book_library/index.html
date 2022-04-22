@@ -2,63 +2,69 @@
 <html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="./css/style.css">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>BookList</title>
+   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-	<div class="wrapper">
+   <div class="wrapper">
 
 
-		<section class="left-section">
+      <section class="left-section">
+         <div class="book-list__like">
+            <h2>Список любимых книг</h2>
+            <div class="book-list__items-like">
 
-			<div class="book-list">
-				<h2>Список любимых книг</h2>
-				<div class="book-list__items">
+            </div>
 
-				</div>
+            <div class="book-list__drop-zone">Drop Zone</div>
+         </div>
+         <div class="book-list">
+            <h2>Список книг</h2>
+            <div class="book-list__items">
 
-			</div>
+            </div>
+            <div class="book-list__drop-zone">Drop Zone</div>
+         </div>
 
-			<div class="add-books">
-				<h2>Добавить книгу</h2>
-				<form method="post" enctype="multipart/form-data">
-					<p><input id="check_sam" type="radio" name="file" value='1' />Написать самому</p>
-					<p><input id="check_down" type="radio" name="file" checked value='2' />Загрузить из файла</p>
-				</form>
-
-
-				<form id="download-file" method="post" enctype="multipart/form-data">
-					<input id="file" type="file" multiple /><br />
-					<input type="submit" value="Загрузить" name="submit" />
-				</form>
-
-
-				<form style="display:none" id="download-write" method="post" enctype="multipart/form-data">
-					<p>Название<br />
-						<input id="book-name" type="text" />
-					</p><br />
-					<p>Текст книги <br>
-						<textarea wrap="soft" name="textarea" id="book-text">
-            </textarea>
-					</p>
-					<input id="push-write" type="button" value="Опубликовать" />
-				</form>
-			</div>
-
-		</section>
+         <div class="add-books">
+            <h2>Добавить книгу</h2>
+            <form method="post" enctype="multipart/form-data">
+               <p><input id="check_sam" type="radio" name="file" value='1' />Написать самому</p>
+               <p><input id="check_down" type="radio" name="file" checked value='2' />Загрузить из файла</p>
+            </form>
 
 
-		<section class="rigth-section">
+            <form id="download-file" method="post" enctype="multipart/form-data">
+               <input id="file" type="file" multiple /><br />
+               <input type="submit" value="Загрузить" name="submit" />
+            </form>
 
-		</section>
+
+            <form style="display:none" id="download-write" method="post" enctype="multipart/form-data">
+               <p>Название<br />
+                  <input id="book-name" type="text" required="required">
+               </p><br />
+               <p>Текст книги <br>
+                  <textarea wrap="soft" name="textarea" id="book-text" required="required"></textarea>
+               </p>
+               <input id="push-write" type="button" value="Опубликовать" />
+            </form>
+         </div>
+
+      </section>
 
 
-	</div>
-	<script src="./app/main.js"></script>
+      <section class="rigth-section">
+
+      </section>
+
+
+   </div>
+   <script src="./app/main.js"></script>
 </body>
 
 </html>
