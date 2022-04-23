@@ -69,8 +69,16 @@ body {
 	flex: 0 0 60%;
 	background-color: rgba(255, 255, 0, 0.21);
 }
-#book-reading {
+.items-like__drop-zoneLike,
+.items__drop-zoneDislike {
+	line-height: 50px;
+	text-align: center;
+	height: 50px;
 	width: 100%;
+	border: 1px dotted #000;
+}
+#book-reading {
+	width: 90%;
 	min-height: 400px;
 	padding: 10px;
 }
@@ -83,6 +91,13 @@ body {
 .hide {
 	background-color: black;
 }
+.none {
+	display: none;
+}
+.hovered {
+	background-color: rgba(255, 0, 0, 0.172);
+}
+
 @keyframes opacity {
 	from {
 		opacity: 1;
@@ -90,12 +105,4 @@ body {
 	to {
 		opacity: 0;
 	}
-}
-
-.book-list__drop-zone{
-	line-height: 50px;
-	text-align: center;
-	height: 50px;
-	width: 100%;
-	border: 1px dotted #000;	
 }
