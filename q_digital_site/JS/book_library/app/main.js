@@ -155,11 +155,13 @@ const updateLocal = () => {
 //Добавление книги написанной вручную
 addTextBtn.addEventListener('click', () => {
 	bookIndividual = filter(books, bookName.value);
-	if (bookIndividual.length < 1) {
+	if (bookIndividual.length < 1 && bookName.value.length > 0) {
 		books.unshift(new Book(bookName.value, bookText.value));
 		reloadWindow();
 		bookName.value = '';
 		bookText.value = '';
+	} else  if (bookName.value.length == 0) {
+		alert('Введите название книги')
 	} else {
 		alert('Книга с таким названием уже существует')
 	}
