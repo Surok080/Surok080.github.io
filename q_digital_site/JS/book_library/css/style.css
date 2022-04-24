@@ -112,7 +112,7 @@ h6 {
 .book-list__read,
 .book-list__del {
 	background-color: grey;
-	font-size: 20px;
+	font-size: 18px;
 	margin: 0 4px;
 	padding: 2px 5px;
 	border-radius: 5px;
