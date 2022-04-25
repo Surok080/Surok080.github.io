@@ -17,7 +17,16 @@
 			<div class="book-list__like">
 				<h2>Список любимых книг</h2>
 				<div class="book-list__items-like">
+					<div data-id="" class="book-list__item none" draggable="true">
+						<div class="book-list__title"></div>
+						<div class="book-list__control">
 
+							<input type="button" data-id="" value="Ред." data-edit class="book-list__redaction">
+							<input type="button" data-id="" value="Прочитал" data-complite class="book-list__complite">
+							<input type="button" data-id="" value="Читать" data-read class="book-list__read">
+							<input type="button" data-id="" value="x" data-delte class="book-list__del">
+						</div>
+					</div>
 				</div>
 
 				<div class="items-like__drop-zoneLike">Drop Zone</div>
@@ -45,13 +54,11 @@
 
 
 				<form style="display:none" id="download-write" method="post" enctype="multipart/form-data">
-					<p>Название<br />
-						<input id="book-name" type="text" required="required">
-					</p><br />
-					<p>Текст книги <br>
-						<textarea wrap="soft" name="textarea" id="book-text" required="required"></textarea>
-					</p>
-					<input id="push-write" type="button" value="Опубликовать" />
+					<input placeholder="Название книги" id="book-name" type="text">
+
+					<textarea placeholder="Текст книги" wrap="soft" name="textarea" id="book-text"></textarea><br />
+
+					<input id="push-write" type="submit" value="Опубликовать" />
 				</form>
 			</div>
 
@@ -59,7 +66,12 @@
 
 
 		<section class="rigth-section">
-
+			<form class='book-reading__form none'>
+				<p><span></span><br />
+					<textarea readonly="readonly" name="textarea" id="book-reading"></textarea>
+				</p>
+				<input type="button" data-id="" value="Сохранить" data-save id='book-reading__btn'>
+			</form>
 		</section>
 
 

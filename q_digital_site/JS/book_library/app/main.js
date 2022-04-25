@@ -8,8 +8,11 @@ const bookName = document.getElementById('book-name');
 const bookText = document.getElementById('book-text');
 const bookItems = document.querySelector('.book-list__items');
 const bookItemsLike = document.querySelector('.book-list__items-like');
-const likeBookItems = document.querySelector('.book-list__items-like');
 const bookReading = document.querySelector('.rigth-section');
+const item = document.querySelector('.book-list__item');
+const clonRead = document.querySelector('.book-reading__form').cloneNode(true);
+let textareaBook = document.getElementById('book-reading');
+
 
 let bookIndividual;
 let oldIndex;
@@ -27,7 +30,7 @@ let booksItem = [];
 function Book(name, description) {
 	this.name = name;
 	this.description = description;
-	this.date = new Date();
+	this.date = new Date().toString();
 	this.status = false;
 	this.dropLike = false;
 }
@@ -49,57 +52,45 @@ document.addEventListener('click', function (event) {
 			oldIndex = -1;
 		} else {
 			bookReading.innerHTML = '';
-			bookReading.innerHTML = createReading(books[index], index, false);
+			createReading(books[index], index, false);
 			oldIndex = index;
 		}
+		reloadWindow();
 	} else if (event.target.dataset.complite != undefined) { //Отмечает книгу как прочитанная
 		books[index].status = !books[index].status;
-		if (books[index].status) {
-			booksItem[index].classList.add('hide');
-		} else {
-			booksItem[index].classList.remove('hide');
-		}
 		reloadWindow();
 	} else if (event.target.dataset.edit != undefined) { //Редактирование книги
 		bookReading.innerHTML = '';
-		bookReading.innerHTML = createReading(books[index], index, false);
+		createReading(books[index], index, false);
 		oldIndex = index;
-
 		bookReading.innerHTML = '';
-		bookReading.innerHTML = createReading(books[index], index, true);
+		createReading(books[index], index, true);
+		reloadWindow();
 	} else if (event.target.dataset.save != undefined) { //Сохранить изменения в книге при редактировании
-		let textareaBook = document.getElementById('book-reading');
+		textareaBook = document.getElementById('book-reading');
 		books[index].description = textareaBook.value;
 		bookReading.innerHTML = '';
-		bookReading.innerHTML = createReading(books[index], index, false);
+		createReading(books[index], index, false)
 		reloadWindow();
 	}
 });
 
 
-//создание html структуры одной книги
-const createTemplate = (elem, index) => {
-	return `<div data-id="${index}" class="book-list__item" draggable="true">
-            <div class="book-list__title">${elem.name}</div>
-            <div class="book-list__control">
-
-               <input type="button" data-id="${index}" value="Ред." data-edit class="book-list__redaction">
-               <input type="button" data-id="${index}" value="Прочитал" data-complite class="book-list__complite ${elem.status ? 'hide' : ''}">
-               <input type="button" data-id="${index}" value="Читать" data-read class="book-list__read" >
-               <input type="button" data-id="${index}" value="x" data-delte class="book-list__del" >
-            </div>
-           </div>`
-}
-
 
 //создание html структуры раздела для чтения
 const createReading = (elem, index, readonly = false) => {
-	return ` <form id='book-reading__form'} >
-            <p>${elem.name}<br>
-            <textarea ${!readonly ? 'readonly="readonly"' : ''} name="textarea" id="book-reading">${elem.description}</textarea>
-         </p>
-			<input type="button" data-id="${index}" value="Сохранить" data-save id = 'book-reading__btn' >
-      </form>`
+	clonRead.querySelector('textarea').innerHTML = '';
+	clonRead.classList.remove('none');
+	clonRead.querySelector('span').innerHTML = elem.name;
+	clonRead.querySelector('textarea').value = elem.description;
+	clonRead.querySelector('[type="button"]').setAttribute('data-id', index);
+	if (readonly) {
+		clonRead.querySelector('textarea').removeAttribute('readonly');
+	} else {
+		clonRead.querySelector('textarea').setAttribute('readonly', "readonly");
+	}
+	bookReading.append(clonRead);
+	reloadWindow();
 }
 
 //фильтр книг по прочтанности
@@ -124,6 +115,23 @@ const sortDate = item => {
 	});
 }
 
+
+const createHTML = (elem, index, htmlItem) => {
+	let clone = item.cloneNode(true);
+	clone.classList = 'book-list__item';
+	clone.setAttribute('data-id', index);
+	clone.querySelector('.book-list__title').innerHTML = elem.name;
+	if (elem.status) {
+		clone.classList.add('hide');
+	} else {
+		clone.classList.remove('hide');
+	}
+	for (let node of clone.querySelectorAll('[type="button"]')) {
+		node.setAttribute('data-id', index);
+	}
+	htmlItem.append(clone);
+}
+
 //Проверка наличия книг в хранилище и добавления их на страницу в случае наличия
 const addHtmlContent = () => {
 
@@ -134,18 +142,18 @@ const addHtmlContent = () => {
 		filterBook();
 		books.forEach((elem, index) => {
 			if (elem.dropLike) {
-				bookItemsLike.innerHTML += createTemplate(elem, index);
-				bookItems.innerHTML += createTemplate(elem, index);
+				createHTML(elem, index, bookItemsLike);
+
 			} else {
-				bookItems.innerHTML += createTemplate(elem, index);
+				createHTML(elem, index, bookItems);
 			}
-
 		});
-		booksItem = document.querySelectorAll('.book-list__complite')
+		booksItem = document.querySelectorAll('.book-list__complite');
 	}
-
 }
 addHtmlContent();
+
+
 
 //Загрузка изменений в локал сторедж
 const updateLocal = () => {
@@ -155,11 +163,13 @@ const updateLocal = () => {
 //Добавление книги написанной вручную
 addTextBtn.addEventListener('click', () => {
 	bookIndividual = filter(books, bookName.value);
-	if (bookIndividual.length < 1) {
+	if (bookIndividual.length < 1 && bookName.value.length > 0) {
 		books.unshift(new Book(bookName.value, bookText.value));
 		reloadWindow();
 		bookName.value = '';
 		bookText.value = '';
+	} else if (bookName.value.length == 0) {
+		alert('Введите название книги')
 	} else {
 		alert('Книга с таким названием уже существует')
 	}
@@ -191,7 +201,6 @@ form.addEventListener('submit', (e) => {
 
 	const files = document.querySelector('[type=file]').files[0];
 	const formData = new FormData();
-	let reader = new FileReader();
 
 	bookIndividual = filter(books, files.name);
 
@@ -205,20 +214,16 @@ form.addEventListener('submit', (e) => {
 			body: formData,
 		}).then(response => response.json())
 			.then(response => {
-				console.log(response);
-				console.log(`Status: ${response.status}`);
-			})
 
-		reader.onload = (function (files) {
-			return function (e) {
-				books.unshift(new Book(files.name, e.target.result));
+				console.log(`Status: ${response.status}`);
+				books.unshift(new Book(response.title, response.text));
+				console.log(books);
 				reloadWindow();
-			};
-		})(files);
-		reader.readAsText(files);
+			})
 	} else {
 		alert('Книга с таким названием уже существует');
 	}
+	reloadWindow();
 });
 
 
@@ -240,6 +245,7 @@ const reloadWindow = () => {
 	updateLocal();
 	addHtmlContent();
 	dragAndDrop();
+	console.log(books);
 }
 
 const refreshHtml = (childHtml, motherHtml, classHtml, text) => {
