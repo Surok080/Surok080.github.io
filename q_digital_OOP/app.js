@@ -24,8 +24,6 @@ class Airplane {
 	#num;
 	#status;
 
-
-
 	constructor(name, speed) {
 		this.name = name;
 		this.#speed = speed;
@@ -73,6 +71,7 @@ class Airplane {
 	}
 }
 
+//Вид самолета МИГ----------------
 class Mig extends Airplane {
 
 	constructor(name, speed) {
@@ -86,6 +85,7 @@ class Mig extends Airplane {
 	}
 }
 
+//Вид самолета Ту154----------------
 class Tu154 extends Airplane {
 	constructor(name, speed) {
 		super(name, speed);
@@ -93,6 +93,7 @@ class Tu154 extends Airplane {
 	}
 }
 
+//Класс Аэропорта------------------
 class Airport {
 	#airplaneToAirport = [];
 	#statusLand;
@@ -101,51 +102,60 @@ class Airport {
 	constructor(name) {
 		this.#name = name
 		this.#airplaneToAirport = [];
-		this.#statusLand = true;
+		this.#statusLand = false;
 	}
 
+	get name() {
+		return this.#name;
+	}
 	get airplaneToAirport() {
 		return this.#airplaneToAirport
 	}
-	set airplaneToAirport(airplaneToAirport){
+	set airplaneToAirport(airplaneToAirport) {
 		this.#airplaneToAirport = airplaneToAirport;
 	}
-
-	status() {
-		this.#statusLand = !this.#statusLand;
+	set statusLand(statusLand) {
+		this.#statusLand = statusLand;
 	}
 
-	getPrin() {
-		return this.#name;
+	OnReadyToAccept() {
+		this.statusLand = false;
+	}
+
+	readyToAccept() {
+		this.statusLand = true;
 	}
 
 
 	landAirplane(airplane) {
+		if (this.#statusLand) {
+			if (this.airplaneToAirport.find(item => item.name == airplane.name) !== undefined) {
+				alert('Данный самолет уже находится в этом аэропорту');
+			} else {
+				this.airplaneToAirport.push(airplane);
+				this.OnReadyToAccept(); //Статус аэропорта переходит в - "не готов", т.к. полоса занята посадкой
+			}
 
-		if (this.airplaneToAirport.find(item => item.name == airplane.name) !== undefined) {
-			alert('Данный самолет уже находится в этом аэропорту');
-			// this.airArray.push(airplane);
+			airplane.statusFly = 0;
 		} else {
-			this.airplaneToAirport.push(airplane);
+			alert(`Запрет на посадку ${airplane.name} , Аэропорт - ${this.name} не готов`);
 		}
-		airplane.statusFly = 0;
 	}
 	takeoffAirplane(airplane) {
-		console.log(this)
-		if (this.#statusLand) {
+		console.log(this.#statusLand)
+		if (!this.#statusLand) {
 			if (this.airplaneToAirport.find(item => item.name == airplane.name) == undefined) {
-				alert('Данный самолет уже не находится в этом аэропорту');
+				alert(`Самолет ${airplane.name} не находится в аэропорту ${this.name}`);
 			}
 
 			for (let i = 0; i < this.airplaneToAirport.length; i++) {
 				if (this.airplaneToAirport[i].name == airplane.name) {
 					this.airplaneToAirport.splice(i, 1)
-
 				}
 			}
 
 		} else {
-			alert('Запрет на взлет, Аэропорт не готов');
+			alert(`Запрет на взлет, Аэропорт - ${this.name} не готов`);
 		}
 		airplane.statusFly = 1;
 	}
@@ -158,17 +168,24 @@ class Airport {
 const mig = new Mig('mig', 1500);
 const tu154 = new Tu154('tu154', 900);
 const airport = new Airport('Vnukovo');
-
+airport.readyToAccept();
 mig.land(airport)
-tu154.land(airport)
 
-//mig.land(airport) - Иннициация взлета самолета МИГ из аэропорта
+
+// tu154.land(airport)
+// tu154.land(airport)
+// tu154.takeoff(airport)
+// mig.takeoff(airport)
+
+//mig.land(airport) - Иннициация посадки самолета МИГ из аэропорта
+//tu154.takeoff(airport) - Иннициация взлета самолета ту154 из аэропорта
 // airport.status() - запрет на взлет сменой статуса аэропорта
 // mig.getStatusFly() - Проверка самолета на земле или в полете
 //console.log(airport.airplaneToAirport) - Показать самолеты в аэропорту
 
-tu154.takeoff(airport)
-// mig.takeoff(airport)
+
+// tu154.takeoff(airport)
+
 
 // tu154.land(airport2)
 
