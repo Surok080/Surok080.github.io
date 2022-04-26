@@ -23,20 +23,20 @@ class Airplane {
 	static #counter = 0;
 	#num;
 	#status;
+	#currentAirport;
 
 	constructor(name, speed) {
 		this.name = name;
 		this.#speed = speed;
 		this.#status = 0;
 		this.#num = Airplane.#counter;
+		this.#currentAirport = '';
 		Airplane.#counter++;
 	}
 
 	//------------------------
 	land(airport) {
 		airport.landAirplane(this);
-
-		console.log(this)
 	}
 	takeoff(airport) {
 		airport.takeoffAirplane(this);
@@ -54,6 +54,12 @@ class Airplane {
 	}
 	set statusFly(status) {
 		this.#status = status;
+	}
+	get currentAirport() {
+		return this.#currentAirport
+	}
+	set currentAirport(currentAirport) {
+		this.#currentAirport = currentAirport;
 	}
 
 
@@ -114,6 +120,7 @@ class Airport {
 	set airplaneToAirport(airplaneToAirport) {
 		this.#airplaneToAirport = airplaneToAirport;
 	}
+
 	set statusLand(statusLand) {
 		this.#statusLand = statusLand;
 	}
@@ -133,6 +140,7 @@ class Airport {
 				alert('Данный самолет уже находится в этом аэропорту');
 			} else {
 				this.airplaneToAirport.push(airplane);
+				airplane.currentAirport = this;
 				this.OnReadyToAccept(); //Статус аэропорта переходит в - "не готов", т.к. полоса занята посадкой
 			}
 
@@ -142,8 +150,7 @@ class Airport {
 		}
 	}
 	takeoffAirplane(airplane) {
-		console.log(this.#statusLand)
-		if (!this.#statusLand) {
+		if (this.#statusLand) {
 			if (this.airplaneToAirport.find(item => item.name == airplane.name) == undefined) {
 				alert(`Самолет ${airplane.name} не находится в аэропорту ${this.name}`);
 			}
@@ -151,6 +158,7 @@ class Airport {
 			for (let i = 0; i < this.airplaneToAirport.length; i++) {
 				if (this.airplaneToAirport[i].name == airplane.name) {
 					this.airplaneToAirport.splice(i, 1)
+					airplane.currentAirport = '';
 				}
 			}
 
@@ -169,19 +177,22 @@ const mig = new Mig('mig', 1500);
 const tu154 = new Tu154('tu154', 900);
 const airport = new Airport('Vnukovo');
 airport.readyToAccept();
-mig.land(airport)
-
+mig.land(airport);
+console.log(mig);
+mig.takeoff(airport)
+console.log(mig);
 
 // tu154.land(airport)
 // tu154.land(airport)
 // tu154.takeoff(airport)
 // mig.takeoff(airport)
 
-//mig.land(airport) - Иннициация посадки самолета МИГ из аэропорта
-//tu154.takeoff(airport) - Иннициация взлета самолета ту154 из аэропорта
+// airport.readyToAccept(); - Аэропорт готов принять самолет
+// mig.land(airport) - Иннициация посадки самолета МИГ из аэропорта
+// tu154.takeoff(airport) - Иннициация взлета самолета ту154 из аэропорта
 // airport.status() - запрет на взлет сменой статуса аэропорта
 // mig.getStatusFly() - Проверка самолета на земле или в полете
-//console.log(airport.airplaneToAirport) - Показать самолеты в аэропорту
+// console.log(airport.airplaneToAirport) - Показать самолеты в аэропорту
 
 
 // tu154.takeoff(airport)
