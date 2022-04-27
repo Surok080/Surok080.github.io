@@ -1,31 +1,23 @@
-// Создать 2 класса для управления Самолетами (2 вида МИГ, ТУ-154).
-// Самолеты имеют методы: взлет, посадка, с одинаковой реализацией.
-// Свойства: название самолета, максимальная скорость. 
-// Значения можно определить при создании самолета.
-// Для самолета типа МИГ реализовать дополнительный метод "Атака".
-// Добавить возможность получить статус состояния самолета, находится он в воздухе или на земле
-
-// Реализовать класс Аэропорт.
-// Методы аэропорта:
-// -Принять самолет, !
-// -Самолет освободил место и улетел, !
-// -Самолет ушел на стоянку,  переделать в статус 2 !
-// -Самолет готов взлетать, переделать в статус 3 !
-// -Самолет заправлен, 
-// -Самолет на ремонте.
-// Реализовать отношения между созданными классами самолетов и Аэропорта:
-// Ассоциация, Агрегация, Композиция.
-// status: 0- на земле, 1- в воздухе, 
-
+class FuelValue {
+	value; // статус топлива 0- нет топлива, 1- есть топливо
+	constructor() {
+		this.value = 0;
+	}
+	fuelQuantity(value) {
+		this.value = value;
+	}
+}
 class Airplane {
-	#name;
-	#speed;
+	#name; //название самолета
+	#speed; // максимальная скорость самолета
 	static #counter = 0;
-	#num;
-	#status;
-	#currentAirport;
+	#num; // каунтер для добавки к имени самолета
+	#status; // статус самолета
+	#currentAirport; // Объект аэропорта в котором находится самолет
+	#fuel; // Объект параметра топлива у самолета
 
 	constructor(name, speed) {
+		this.#fuel = new FuelValue();
 		this.#name = name;
 		this.#speed = speed;
 		this.#status = 1;
@@ -33,7 +25,9 @@ class Airplane {
 		this.#currentAirport = '';
 		Airplane.#counter++;
 	}
-
+	fuelStatus(value) {
+		return this.#fuel.fuelQuantity(value);
+	}
 	//------------------------
 	land(airport) {
 		airport.landAirplane(this);
@@ -41,21 +35,23 @@ class Airplane {
 	takeoff(airport) {
 		airport.takeoffAirplane(this);
 	}
-	takeoffFreed(airport){
+	takeoffFreed(airport) {
 		airport.takeoffFreedAirport(this);
 	}
 	//------------------------
-
+	get fuel() {
+		return this.#fuel;
+	}
 	get name() {
 		return this.#name;
 	}
 	set name(name) {
 		if (name === '') {
-			throw new Error ('name field cannot be empty');
+			throw new Error('name field cannot be empty');
 		} else {
 			this.#name = name;
 		}
-		
+
 	}
 	get statusAirplane() {
 		return this.#status
@@ -65,16 +61,21 @@ class Airplane {
 		if (status === 0 || status === 1 || status === 2 || status === 3) {
 			this.#status = status;
 		} else {
-			throw new Error ('name field cannot be empty');
+			throw new Error('name field cannot be empty');
 		}
 
-		
+
 	}
 	get currentAirport() {
 		return this.#currentAirport
 	}
 	set currentAirport(currentAirport) {
 		this.#currentAirport = currentAirport;
+	}
+
+	refueling() {
+		this.fuelStatus(1);
+		alert(`${this.name} заправлен`)
 	}
 
 	readyToFly() {
@@ -104,11 +105,9 @@ class Airplane {
 
 //Класс самолета МИГ----------------
 class Mig extends Airplane {
-
 	constructor(name, speed) {
 		super(name, speed);
 		this.name = name + '_' + this.getNum();
-
 	}
 	attack() {
 		//Проверку добавить в воздухе или нет
@@ -151,21 +150,29 @@ class Airport {
 	}
 
 	onReadyToAccept() {
-		this.statusLand = false;
+		this.#statusLand = false;
 	}
 
 	readyToAccept() {
-		this.statusLand = true;
+		this.#statusLand = true;
 	}
 
-	airportBan(airplane){
+	airportBan(airplane) {
 		alert(`Запрет на взлет и посадку ${airplane.name} , Аэропорт - ${this.name} не готов`);
 	}
-	takeoffFreedAirport(airplane){
+	takeoffFreedAirport(airplane) {
+		airplane.readyToFly();
 		this.readyToAccept();
 		this.takeoffAirplane(airplane);
 	}
 
+	statusLand() {
+		if (!this.#statusLand) {
+			alert(`Аэропорт ${this.name} не готов к принятию и отправке`)
+		} else {
+			alert(`Аэропорт ${this.name} готов к принятию и отправке`)
+		}
+	}
 
 	landAirplane(airplane) {
 		if (airplane.statusAirplane == 1) {
@@ -174,6 +181,7 @@ class Airport {
 				airplane.currentAirport = this;
 				this.onReadyToAccept(); //Статус аэропорта переходит в - "не готов", т.к. полоса занята посадкой
 				airplane.statusAirplane = 0;
+				airplane.fuelStatus(0); // Статус топлива самолета переводится на 0 (отсутствует)
 			} else {
 				this.airportBan(airplane)
 			}
@@ -184,18 +192,22 @@ class Airport {
 
 	}
 	takeoffAirplane(airplane) {
-		if (airplane.statusAirplane == 3) {
+		console.log(airplane.fuel.value);
+		if (airplane.statusAirplane == 3 && airplane.fuel.value == 1) {
 			if (this.#statusLand) {
 				for (let i = 0; i < this.airplaneToAirport.length; i++) {
 					if (this.airplaneToAirport[i].name == airplane.name) {
 						this.airplaneToAirport.splice(i, 1)
 						airplane.currentAirport = '';
+						alert(`Взлет ${airplane.name} выполнен `);
 					}
 				}
 				airplane.statusAirplane = 1;
 			} else {
 				this.airportBan(airplane)
 			}
+		} else if (airplane.fuel.value == 0) {
+			alert(`Взлет не возможен, ${airplane.name} требуется заправка топлива `);
 		} else {
 			alert(`Взлет не возможен`);
 			airplane.getStatus()
@@ -209,33 +221,35 @@ const mig = new Mig('mig', 1500);
 const tu154 = new Tu154('tu154', 900);
 const airport = new Airport('Vnukovo');
 
+// Возможный сценарий с использованием всех методов--------------
+// mig.getStatus() // получить статус самолета МИГ
+// tu154.getStatus() // получить статус самолета Ту154
+// airport.readyToAccept(); // Перевести аэропорт в состояние готовности принять самолет
+// mig.land(airport); // Посадить самолет МИГ в выбранный аэропорт, состояние аэропорта переходит в неготовое принять или отправить самолет
+// mig.getStatus() // получить статус самолета МИГ
+// mig.parkingAirplane() // Отправить МИГ на парковку
+// mig.getStatus() // получить статус самолета МИГ
+// airport.readyToAccept(); // Перевести аэропорт в состояние готовности принять самолет
+// tu154.land(airport); // Посадить самолет Ту154 в выбранный аэропорт, состояние аэропорта переходит в неготовое принять или отправить самолет
+// tu154.getStatus() // получить статус самолета Ту154
+// airport.statusLand(); // получить статус аэропорта
+// mig.refueling() // заправка самолета МИГ
+// mig.readyToFly(); // Привести самолет МИГ в готовность взлета;
+// airport.readyToAccept(); // Перевести аэропорт в состояние готовности принять самолет
+// mig.takeoff(airport) // Произвести взлет самолета МИГ
+// mig.getStatus() // получить статус самолета МИГ
+// tu154.refueling() // заправка самолета Ту154
+// airport.statusLand(); // получить статус аэропорта
+// tu154.takeoffFreed(airport); // Привести аэропорт в готовность к взлету, произвести взлет самолета;
+// tu154.getStatus() // получить статус самолета Ту154
+// mig.attack() // Метод атаки самолета МИГ
+//---------------------------------------------------------------
 
 
 
-airport.readyToAccept();
 
-
-// console.log(mig);
-mig.land(airport);
-
-// airport.readyToAccept();
-
-mig.readyToFly();
-
-
-mig.takeoffFreed(airport)
-
-// mig.takeoff(airport)
-// airport.readyToAccept();
-console.log(mig);
-
-// takeoffFreedAirport(airplane)
-// tu154.land(airport)
-// tu154.land(airport)
-// tu154.takeoff(airport)
-// mig.takeoff(airport)
-
-
+// Список всех возможных команд--------------------------
+// mig.refueling() - заправка самолета МИГ
 // mig.parkingAirplane(); - Отправить самолет на стоянку
 // mig.readyToFly(); - Привести самолет в готовность взлета;
 // mig.takeoffFreed(airport); - Аэропорт готов к взлету, самолет взлетает;
@@ -245,17 +259,8 @@ console.log(mig);
 // airport.statusLand() - статуса аэропорта на отправку и принятие самолета
 // mig.getStatus() - Проверка самолета на земле или в полете
 // console.log(airport.airplaneToAirport) - Показать самолеты в аэропорту
+// mig.attack() - Метод атаки самолета МИГ
+//--------------------------------------------------------
 
-
-// tu154.takeoff(airport)
-
-
-// tu154.land(airport2)
-
-// console.log(mig.attack());
-console.log(airport);
-
-// console.log();
-
-
+console.log(mig);
 
