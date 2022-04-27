@@ -1,11 +1,18 @@
 class FuelValue {
-   value; // статус топлива 0- нет топлива, 1- есть топливо
+   #value; // статус топлива 0- нет топлива, 1- есть топливо
    constructor() {
-      this.value = 0;
+      this.#value = 0;
    }
    fuelQuantity(value) {
       this.value = value;
    }
+   set value(value) {
+      this.#value = value;
+   }
+   get value() {
+      return this.#value
+   }
+
 }
 class Airplane {
    #name; //название самолета
@@ -192,7 +199,6 @@ class Airport {
 
    }
    takeoffAirplane(airplane) {
-      console.log(airplane.fuel.value);
       if (airplane.statusAirplane == 3 && airplane.fuel.value == 1) {
          if (this.#statusLand) {
             for (let i = 0; i < this.airplaneToAirport.length; i++) {
