@@ -1,0 +1,366 @@
+/*Обнуление*/
+*,
+*:before,
+*:after {
+   padding: 0;
+   margin: 0;
+   border: 0;
+   box-sizing: border-box;
+}
+
+html,
+body {
+   height: 100%;
+}
+/*Обнуление*/
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+}
+
+.header {
+   width: 100%;
+   position: fixed;
+   background-color: #87509c;
+   z-index: 20;
+}
+
+.container {
+   max-width: 1200px;
+   margin: 0px auto;
+   padding: 0px 15px;
+}
+
+@media (max-width: 450px) {
+   .container {
+      padding: 0px;
+   }
+}
+
+.header__row {
+   padding: 10px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.header__logo a {
+   display: inline-flex;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   border: 1px solid yellow;
+   position: relative;
+}
+
+.header__logo a::before {
+   content: "";
+   width: 20px;
+   height: 20px;
+   position: absolute;
+   top: 9px;
+   left: 9px;
+   border: 1px solid #ece89d;
+   border-radius: 30%;
+   animation-duration: 3s;
+   animation-name: roll;
+   animation: roll 3s linear infinite;
+}
+
+.header__logo a::after {
+   content: "";
+   width: 30px;
+   height: 30px;
+   position: absolute;
+   top: 4px;
+   left: 4px;
+   border: 2px solid darkred;
+   border-radius: 30%;
+   animation-duration: 3s;
+   animation-name: roll;
+   animation: roll 4s linear infinite reverse;
+}
+
+@keyframes roll {
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(180deg);
+   }
+}
+
+.header__title {
+   width: 100%;
+   color: white;
+   font-size: 18px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.header__text {
+   transform: translateX(-20px);
+   text-shadow: 4px 4px 8px grey, 2px 2px 1px black;
+}
+
+.main-aside {
+   padding-top: 63px;
+   display: flex;
+   flex-direction: row-reverse;
+}
+
+.main {
+   padding: 10px;
+   flex: 1 1 80%;
+   height: 800px;
+   background-color: grey;
+   border: 1px solid #000;
+}
+
+.main__items {
+   height: 100%;
+   background-color: rgb(242, 206, 96);
+}
+
+.aside {
+   padding: 10px;
+   height: 800px;
+   flex: 0 0 20%;
+   background-color: grey;
+   border: 1px solid #000;
+}
+
+.aside__items {
+   height: 100%;
+   background-color: #3e3e3e;
+   padding: 0 30px 0 45px;
+}
+
+.nav {
+   padding-top: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 120px;
+}
+
+.nav__items {
+   text-align: center;
+   width: 70px;
+   height: 400px;
+   background-color: #fff;
+   display: flex;
+   position: relative;
+   justify-content: center;
+   align-items: center;
+   border-radius: 10px;
+}
+
+.nav__ul {
+   display: flex;
+   flex-direction: column;
+   height: 350px;
+}
+
+.nav__li {
+   list-style: none;
+   width: 70px;
+   height: 70px;
+   z-index: 2;
+}
+
+.nav__li a {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   height: 100%;
+   text-align: center;
+   font-weight: 500px;
+   color: black;
+}
+
+.icon {
+   position: relative;
+   display: block;
+   line-height: 70px;
+   font-size: 1.5em;
+   text-align: center;
+   transition: 0.5s;
+   color: var(--clr);
+   transform: rotate(-180deg);
+}
+
+.nav__li.active .icon {
+   transform: translateX(-42px);
+}
+
+.nav__li a .text {
+   position: absolute;
+   top: 5px;
+   color: var(--clr);
+   font-weight: 400;
+   font-size: 0.75em;
+   letter-spacing: 0.05em;
+   transition: 0.5s;
+   opacity: 0;
+   transform: translate3d(0px, 20px, 0px);
+}
+
+.nav__li.active a .text {
+   opacity: 1;
+   transform: translate3d(20px, 20px, 0px);
+}
+
+.indicator {
+   position: absolute;
+   top: 20px;
+   right: 60%;
+   width: 70px;
+   height: 70px;
+   background: #29fd53;
+   border-radius: 50%;
+   border: 6px solid white;
+   transition: 0.5s;
+}
+
+.indicator::before {
+   content: "";
+   position: absolute;
+   top: 63px;
+   left: 18px;
+   width: 20px;
+   height: 20px;
+   background: transparent;
+   border-top-right-radius: 20px;
+   box-shadow: 4px -6px 0 0 white;
+}
+
+.indicator::after {
+   content: "";
+   position: absolute;
+   top: -25px;
+   right: 20px;
+   width: 20px;
+   height: 20px;
+   transform: rotate(182deg);
+   background: transparent;
+   border-top-left-radius: 19px;
+   box-shadow: -4px -6px 0 0 white;
+}
+
+.indicator.right {
+   position: absolute;
+   top: 37px;
+   left: 70%;
+   width: 40px;
+   height: 40px;
+   background: white;
+}
+
+.indicator.right::before {
+   top: 32px;
+   left: 13px;
+   width: 15px;
+   height: 15px;
+   background: transparent;
+   transform: rotate(260deg);
+}
+
+.indicator.right::after {
+   top: -18px;
+   right: 0px;
+   width: 15px;
+   height: 15px;
+   transform: rotate(270deg);
+}
+
+.nav__li:nth-child(1).active ~ .indicator {
+   transform: translateY(calc(70px * 0));
+}
+
+.nav__li:nth-child(2).active ~ .indicator {
+   transform: translateY(calc(70px * 1));
+}
+
+.nav__li:nth-child(3).active ~ .indicator {
+   transform: translateY(calc(70px * 2));
+}
+
+.nav__li:nth-child(4).active ~ .indicator {
+   transform: translateY(calc(70px * 3));
+}
+
+.nav__li:nth-child(5).active ~ .indicator {
+   transform: translateY(calc(70px * 4));
+}
+
+.main__items {
+   padding: 10px;
+   overflow-y: auto;
+}
+
+.main__title {
+   position: sticky;
+   top: 0px;
+   width: 100%;
+   background-color: white;
+   padding: 10px;
+   text-transform: uppercase;
+}
+
+.main__text {
+   font-size: 18px;
+   padding: 20px;
+}
+
+.main__text ul li {
+   list-style: none;
+   margin: 5px 0;
+}
+
+.footer {
+   display: block;
+   background-color: #e1e1e1;
+   text-align: center;
+}
+
+.footer__items {
+   padding: 10px;
+   text-align: center;
+}
+
+.footer__link {
+   margin: 40px 0;
+}
+
+.footer__link a {
+   text-decoration: none;
+   font-size: 18px;
+   margin: 0 10px;
+   transition: all 0.2s ease-in-out;
+}
+
+.footer__link a:hover {
+   color: red;
+   text-shadow: 0px 0px 20px yellow;
+}
+
+.footer__copy {
+   margin: 20px 0 200px 0;
+}
+
+.back-button a {
+   color: red;
+   position: fixed;
+   padding: 20px;
+   background-color: black;
+   right: 10px;
+   bottom: 10px;
+   text-decoration: none;
+   border-radius: 50%;
+   opacity: 0.6;
+}
