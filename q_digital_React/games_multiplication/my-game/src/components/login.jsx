@@ -1,10 +1,12 @@
-// import { Logout } from "@mui/icons-material";
+import React from 'react';
 import { Component } from "react";
 
+
 export class Login extends Component {
+
 	constructor(props) {
 		super(props);
-		this.state = { login: "", password: '', };
+		this.state = { login: "", password: '' };
 		this.handleChangeLogin = this.handleChangeLogin.bind(this);
 		this.handleChangePassword = this.handleChangePassword.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,6 +40,7 @@ export class Login extends Component {
 					</button>
 				</form>
 				<button onClick={this.Logout}>Logout</button>
+				{/* <button onClick={() => { this.props.updateData(!this.props.ticet) }}>Запустить бумеранг</button> */}
 			</div>
 		);
 	}
@@ -49,11 +52,14 @@ export class Login extends Component {
 		this.setState({ password: e.target.value });
 	}
 	Logout() {
-		console.log('clear');
-		localStorage.clear()
+		// console.log(this.props.ticet)
+		localStorage.clear();
+		window.location = '/';
+
 	}
 	handleSubmit(e) {
 		e.preventDefault();
+		localStorage.clear();
 		console.log('yes', this.state.login, this.state.password);
 
 
@@ -72,9 +78,10 @@ export class Login extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data.data.access_token);
+				console.log(this.props.ticet);
 				localStorage.setItem('token', JSON.stringify(data.data.access_token))
+				window.location = '/list'
 			})
+
 	}
 }
-

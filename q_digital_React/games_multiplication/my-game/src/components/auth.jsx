@@ -1,5 +1,7 @@
 import { Component } from "react";
-import {history} from '../App';
+import { Link } from "react-router-dom";
+
+
 
 export class Auth extends Component {
 	constructor(props) {
@@ -44,11 +46,12 @@ export class Auth extends Component {
 						value={this.state.password_confirmation}
 						placeholder="пароль повторить"
 					/>
+					<br />
 					<button>
 						Регистрация
 					</button>
 				</form>
-
+				<Link to="/login" >Есть аккаунт</Link>
 			</div>
 		);
 	}
@@ -70,7 +73,6 @@ export class Auth extends Component {
 		e.preventDefault();
 		console.log('yes', this.state.login, this.state.user, this.state.password, this.state.password_confirmation);
 
-
 		const newPost = {
 			name: this.state.user,
 			email: this.state.login, // also email.login
@@ -88,7 +90,6 @@ export class Auth extends Component {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data)
-				history.push('/list');
 
 			})
 	}

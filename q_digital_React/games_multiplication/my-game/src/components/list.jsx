@@ -1,6 +1,6 @@
-// import { Logout } from "@mui/icons-material";
+import React from 'react';
 import { Component } from "react";
-import { Link } from "react-router-dom";
+
 
 export class List extends Component {
 	constructor(props) {
@@ -33,9 +33,9 @@ export class List extends Component {
 
 
 
-getList(){
-	console.log('tyes');
-}
+	getList() {
+		console.log('tyes');
+	}
 
 
 	handleChangeSelect(e) {
@@ -65,6 +65,10 @@ getList(){
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				localStorage.setItem('items', JSON.stringify(data));
+				localStorage.setItem('type_hard', JSON.stringify(+this.state.type));
+				localStorage.setItem('type', 1);
+				window.location = '/games'
 			})
 	}
 }

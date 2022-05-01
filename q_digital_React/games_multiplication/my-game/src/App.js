@@ -3,20 +3,22 @@ import { Routes, Route } from 'react-router-dom'
 import { Login } from 'components/login';
 import { Auth } from 'components/auth';
 import { List } from 'components/list';
-import { createBrowserHistory } from 'history'
+import { Games } from 'components/games';
+
 
 
 
 
 
 function App() {
-	const history = createBrowserHistory()
+
 	return (
-		<Routes history={history}>
+		<Routes >
 			<Route path='/' element={<Main />} />
 			<Route path='/login' element={<Login />} />
 			<Route path='/auth' element={<Auth />} />
 			<Route path='/list' element={<List />} />
+			<Route path='/games' element={<Games />} />
 		</Routes>
 	);
 }
