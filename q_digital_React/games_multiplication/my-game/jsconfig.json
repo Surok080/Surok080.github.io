@@ -4,5 +4,5 @@
 	},
 	"include": [
 		"src"
-	]
+, "../../../../../React-samurai/back_q-digital/pages"	]
 }
