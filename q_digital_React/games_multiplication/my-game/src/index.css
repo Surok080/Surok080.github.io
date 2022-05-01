@@ -11,22 +11,4 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-.authorization input,
-.authorization button {
-	text-align: center;
-	justify-content: center;
-	display: flex;
-	padding: 10px;
-	border-radius: 10px;
-	margin: 10px auto;
 
-}
-.authorization button a{
-	color: #000;
-		text-decoration: none;
-}
-.authorization {
-	justify-content: center;
-	display: flex;
-	margin: 40px;
-}
