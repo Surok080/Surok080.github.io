@@ -14,6 +14,7 @@ export class Games extends Component {
 			count: '',
 			histori: false,
 			questions: '',
+			seconds: 10,
 		};
 		this.handleChangeLogin = this.handleChangeLogin.bind(this);
 		this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -25,13 +26,13 @@ export class Games extends Component {
 	render() {
 		
 		const optionArray = this.state.options;
-		if (this.state.histori) {
-			
-		} else {
-			
-		}
+
 		return (
 			<div>
+				<div>
+					Секунды: {this.state.seconds} {this.g}
+				</div>
+				<br></br>
 				<h2>Score </h2>
 				<div>{this.state.question}</div>
 				<button className='p-1 m-2 ' value={optionArray[0]} onClick={this.handleSubmit}>{optionArray[0]}</button>
@@ -41,9 +42,15 @@ export class Games extends Component {
 				<br></br>
 				<button className='p-1 mt-5' onClick={this.Logout}>Logout</button>
 				<br></br>
-	
+
 			</div>
 		);
+	}
+
+	tick() {
+		this.setState(state => ({
+			seconds: state.seconds - 1
+		}));
 	}
 
 	componentDidMount() {
@@ -51,11 +58,14 @@ export class Games extends Component {
 		const count = localStorage.getItem('type');
 		let arrayItem = JSON.parse(user);
 		if (arrayItem.data.question) {
+			this.interval = setInterval(() => this.tick(), 1000);
 			this.setState({
 				options: arrayItem.data.options,
 				question: arrayItem.data.question,
 				count: count,
+				seconds: arrayItem.data.time,
 			});
+			console.log(arrayItem);
 		} else {
 			console.log(arrayItem);
 			this.setState({
@@ -63,9 +73,12 @@ export class Games extends Component {
 				questions: arrayItem.data.questions,
 			});
 		}
-
-
 	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
 	handleChangeLogin(e) {
 		this.setState({ login: e.target.value });
 	}
@@ -80,7 +93,7 @@ export class Games extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		
+	
 		this.setState({ count: 2 });
 		const newPost = {
 			answer: e.target.value,
