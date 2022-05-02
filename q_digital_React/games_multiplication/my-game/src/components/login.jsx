@@ -59,7 +59,6 @@ export class Login extends Component {
 						className={"btn btn-primary btn-lg mt-3 " + this.state.statusLogin}
 						onClick={this.goToList}
 					>
-
 						В личный кабинет
 					</button>
 				</div>
@@ -93,12 +92,7 @@ export class Login extends Component {
 	}
 
 	goToList() {
-		// if (condition) {
-		// 	auth
-		// }
-		
-
-		// window.location = '/list';
+		window.location = '/list';
 	}
 
 	handleSubmit(e) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from "react";
 
 
-
 export class Games extends Component {
 
 	constructor(props) {
@@ -12,31 +11,67 @@ export class Games extends Component {
 			options: '',
 			question: '',
 			count: '',
-			seconds: 10,
+			seconds: 8,
+			status: '',
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
 		this.Logout = this.Logout.bind(this);
-
 	}
 
-	render() {
 
-		const optionArray = this.state.options;
+
+
+
+	render() {
+		const optionArray = this.state.status;
+		let testP = this.state.options;
+		let arrayButton;
+
+		if (optionArray.length > 0) {
+			arrayButton = optionArray.map((his, key) =>
+				<button key={key} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[key]} onClick={this.handleSubmit}>{optionArray[key]}</button>
+			)
+		} else if (optionArray.length <= 0) {
+			arrayButton = <form onSubmit={this.Logout}  >
+				<label className="mb-4 p-1 w-25">
+					Ваш ответ
+				</label>
+				<br />
+				<input
+					type='text'
+					onChange={this.handleChangeAnswer}
+					value= {testP}
+					className='form-control w-50 text-center m-auto'
+					placeholder="ответ"
+				/>
+				<button className="btn btn-primary mt-3" type="submit" value="Отправить">
+					Отправить
+				</button>
+			</form>
+
+		}
 
 		return (
-			<div>
-				<div>
+			<div className='container w-25'>
+				<div
+					className='h4'
+				>
 					Секунды: {this.state.seconds} {this.g}
 				</div>
 				<br></br>
 				<h2>Score </h2>
-				<div>{this.state.question}</div>
-				<button className='p-1 m-2 ' value={optionArray[0]} onClick={this.handleSubmit}>{optionArray[0]}</button>
-				<button className='p-1 m-2 ' value={optionArray[1]} onClick={this.handleSubmit}>{optionArray[1]}</button>
-				<button className='p-1 m-2 ' value={optionArray[2]} onClick={this.handleSubmit}>{optionArray[2]}</button>
-				<button className='p-1 m-2 ' value={optionArray[3]} onClick={this.handleSubmit}>{optionArray[3]}</button>
+				<div
+					className='h3 m-4'
+				>{this.state.question + ' = ...'}</div>
+				<div
+					className='col w-75 m-auto '
+				>
+					{arrayButton}
+				</div>
+
 				<br></br>
-				<button className='p-1 mt-5' onClick={this.Logout}>Stop Game</button>
+				<button className='p-2 m-3 btn-outline-danger btn-lg w-25' onClick={this.Logout}>Stop Game</button>
 
 				<br></br>
 			</div>
@@ -49,6 +84,14 @@ export class Games extends Component {
 		}));
 	}
 
+	handleChangeAnswer(e) {
+		console.log(e);
+		this.setState({ options: e.target.value });
+		console.log(this.state.options);
+	}
+
+
+
 	componentDidMount() {
 		const user = localStorage.getItem('items');
 		const count = localStorage.getItem('type');
@@ -57,6 +100,7 @@ export class Games extends Component {
 			this.interval = setInterval(() => this.tick(), 1000);
 			this.setState({
 				options: arrayItem.data.options,
+				status: arrayItem.data.options,
 				question: arrayItem.data.question,
 				count: count,
 				seconds: arrayItem.data.time,
@@ -72,18 +116,14 @@ export class Games extends Component {
 		clearInterval(this.interval);
 	}
 
-	Logout() {
-		window.location = '/list'
+	Logout(e) {
+		console.log(this.state.options);
+		console.log(e.target.value);
+		// window.location = '/list'
 	}
 
-	// componentDidUpdate() {
-	// 	if (this.state.histori) {
-	// 		window.location = '/history'
-	// 	}
-
-	// }
-
 	handleSubmit(e) {
+		console.log(e.target.value);
 		e.preventDefault();
 
 		this.setState({ count: 2 });

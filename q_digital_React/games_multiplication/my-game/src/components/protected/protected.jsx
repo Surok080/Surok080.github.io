@@ -2,11 +2,7 @@
 import { Component } from "react";
 import { Navigate } from "react-router-dom";
 
-
-
 export class Protected extends Component {
-
-
 
 	render() {
 		const Component = this.props.component;
@@ -14,12 +10,8 @@ export class Protected extends Component {
 
 		return (
 			<div>
-
-				{isAuth ? <Component /> : <Navigate to='/auth' replace />}
-				
+				{isAuth ? <Component /> : <Navigate to='/login' replace />}
 			</div>
-
 		)
 	}
-
 }

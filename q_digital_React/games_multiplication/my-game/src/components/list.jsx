@@ -51,7 +51,7 @@ export class List extends Component {
 
 	Logout(){
 		localStorage.clear();
-		window.location = '/'
+		window.location = '/login'
 	}
 
 	handleChangeSelect(e) {

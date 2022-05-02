@@ -6,7 +6,8 @@ import { List } from 'components/list';
 import { Games } from 'components/games';
 import { History } from 'components/history';
 import { Component } from "react";
-import { Protected } from 'components/protected';
+import { Protected } from 'components/protected/protected';
+import { ProtectedGame } from 'components/protected/protectedGame';
 
 
 
@@ -19,11 +20,11 @@ export class App extends Component {
 				<Route path='/' element={<Main />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/auth' element={<Auth />} />
-				<Route path='/list' element={<Protected  component={List}/>} />
-				<Route path='/games' element={<Games />} />
-				<Route path='/history' element={<History />} />
-			
-				
+				<Route path='/list' element={<Protected component={List} />} />
+				<Route path='/games' element={<ProtectedGame component={Games} />} />
+				<Route path='/history' element={<ProtectedGame component={History} />} />
+
+
 
 			</Routes>
 		);
