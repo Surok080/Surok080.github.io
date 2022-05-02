@@ -41,6 +41,7 @@ export class Auth extends Component {
 					/>
 					<br />
 					<input
+						type='password'
 						className='form-control w-50 text-center m-auto'
 						onChange={this.handleChangePassword}
 						value={this.state.password}
@@ -48,6 +49,7 @@ export class Auth extends Component {
 					/>
 					<br />
 					<input
+						type='password'
 						className='form-control w-50 text-center m-auto'
 						onChange={this.handleChangepassword_confirmation}
 						value={this.state.password_confirmation}
