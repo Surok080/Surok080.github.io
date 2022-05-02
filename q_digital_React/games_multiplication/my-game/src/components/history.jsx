@@ -2,13 +2,12 @@ import React from 'react';
 import { Component } from "react";
 
 
-export class List extends Component {
+export class History extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { type: '1' };
 		this.handleChangeSelect = this.handleChangeSelect.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.Logout = this.Logout.bind(this);
 		// this.getList = this.getList.bind(this);
 	}
 
@@ -16,28 +15,7 @@ export class List extends Component {
 		return (
 			<>
 				<div className="container w-25 mx-auto border p-5 ">
-					<form
-						onSubmit={this.handleSubmit}
-						className="row"
-					>
-						<label
-						className="mb-3"
-						>
-							Выберите сложность:
-							<select className="form-select w-50 m-auto mt-3" value={this.state.type} onChange={this.handleChangeSelect}>
-								<option disabled="disabled">Выбери сложность</option>
-								<option value="1">легко </option>
-								<option value="2">тяжело</option>
-							</select>
-						</label>
-						<input className="btn btn-primary m-auto mt-3 w-50" type="submit" value="Проверить знания" />
-					</form>
-					<button
-						className="btn btn-danger mt-3"
-						onClick={this.Logout}
-					>
-						Выйти из профиля
-					</button>
+					ИСТОРИЯ
 				</div>
 			</>
 		);
@@ -49,10 +27,6 @@ export class List extends Component {
 		console.log('tyes');
 	}
 
-	Logout(){
-		localStorage.clear();
-		window.location = '/'
-	}
 
 	handleChangeSelect(e) {
 		this.setState({ type: e.target.value });
@@ -88,4 +62,3 @@ export class List extends Component {
 			})
 	}
 }
-

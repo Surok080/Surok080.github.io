@@ -12,19 +12,15 @@ export class Games extends Component {
 			options: '',
 			question: '',
 			count: '',
-			histori: false,
-			questions: '',
 			seconds: 10,
 		};
-		this.handleChangeLogin = this.handleChangeLogin.bind(this);
-		this.handleChangePassword = this.handleChangePassword.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.Logout = this.Logout.bind(this);
 
 	}
 
 	render() {
-		
+
 		const optionArray = this.state.options;
 
 		return (
@@ -40,9 +36,9 @@ export class Games extends Component {
 				<button className='p-1 m-2 ' value={optionArray[2]} onClick={this.handleSubmit}>{optionArray[2]}</button>
 				<button className='p-1 m-2 ' value={optionArray[3]} onClick={this.handleSubmit}>{optionArray[3]}</button>
 				<br></br>
-				<button className='p-1 mt-5' onClick={this.Logout}>Logout</button>
-				<br></br>
+				<button className='p-1 mt-5' onClick={this.Logout}>Stop Game</button>
 
+				<br></br>
 			</div>
 		);
 	}
@@ -67,33 +63,29 @@ export class Games extends Component {
 			});
 			console.log(arrayItem);
 		} else {
-			console.log(arrayItem);
-			this.setState({
-				histori: true,
-				questions: arrayItem.data.questions,
-			});
+			window.location = '/history'
 		}
+
 	}
 
 	componentWillUnmount() {
 		clearInterval(this.interval);
 	}
 
-	handleChangeLogin(e) {
-		this.setState({ login: e.target.value });
+	Logout() {
+		window.location = '/list'
 	}
-	handleChangePassword(e) {
-		this.setState({ password: e.target.value });
-	}
-	Logout(e) {
 
-		console.log(e.target.value);
-		console.log(this.state.count);
-	}
+	// componentDidUpdate() {
+	// 	if (this.state.histori) {
+	// 		window.location = '/history'
+	// 	}
+
+	// }
 
 	handleSubmit(e) {
 		e.preventDefault();
-	
+
 		this.setState({ count: 2 });
 		const newPost = {
 			answer: e.target.value,

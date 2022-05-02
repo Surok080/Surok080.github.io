@@ -1,33 +1,33 @@
 import { Component } from "react";
-import { Auth } from './auth';
-// import { Login } from './login';
-// import { List } from './list';
+import { Link } from "react-router-dom";
+
 
 
 export class Main extends Component {
 
-	state = {
-		name: 'Alex',
-		age: 1,
-		ticet: false,
-	}
-	updateData = (value) => {
-		this.setState({ ticet: value })
-	}
+	// state = {
+	// 	name: 'Alex',
+	// 	age: 1,
+	// 	ticet: false,
+	// }
+	// updateData = (value) => {
+	// 	this.setState({ ticet: value })
+	// }
 
 
 	render() {
 
 		return (
-			<>
-				<Auth />
+			<div
+				className='container w-100 h-100 p-5 m-auto'
+			>
 				<hr />
-				{/* <Login updateData={this.updateData} ticet={this.state.ticet} /> */}
+				<Link to="/login" className="btn btn-primary mt-3 center-block mh-100"> Авторизация</Link>
 				<hr />
-			
 
 
-			</>
+
+			</div>
 		)
 	}
 
