@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from "react";
 
 
-export class Games extends Component {
+export class GamesHard extends Component {
 
 	constructor(props) {
 		super(props);
@@ -11,7 +11,7 @@ export class Games extends Component {
 			question: '',
 			count: '',
 			seconds: 8,
-			statusButton: false,
+			status: '',
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
@@ -19,8 +19,6 @@ export class Games extends Component {
 	}
 
 	render() {
-		const optionArray = this.state.options;
-		const isAuth = Boolean(this.state.statusButton)
 		return (
 			<div className='container w-25'>
 				<div
@@ -36,10 +34,23 @@ export class Games extends Component {
 				<div
 					className='col w-75 m-auto '
 				>
-					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[0]} onClick={this.handleSubmit}>{optionArray[0]}</button>
-					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[1]} onClick={this.handleSubmit}>{optionArray[1]}</button>
-					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[2]} onClick={this.handleSubmit}>{optionArray[2]}</button>
-					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[3]} onClick={this.handleSubmit}>{optionArray[3]}</button>
+					<form onSubmit={this.handleSubmit}  >
+						<label className="mb-4 p-1 w-25">
+							Ваш ответ
+						</label>
+						<br />
+						<input
+							autoFocus={true}
+							required="required"
+							type='text'
+							onChange={this.handleChangeAnswer}
+							value={this.state.options}
+							className='form-control w-50 text-center m-auto'
+						/>
+
+						<input className="btn btn-primary mt-3" type="submit" value="Отправить" />
+
+					</form>
 				</div>
 
 				<br></br>
@@ -57,9 +68,9 @@ export class Games extends Component {
 	}
 
 	handleChangeAnswer(e) {
-		console.log(e);
-		this.setState({ options: e.target.value });
-		console.log(this.state.options);
+		if (typeof (+e.target.value) == "number" && !isNaN(+e.target.value)) {
+			this.setState({ options: e.target.value });
+		}
 	}
 
 	componentDidMount() {
@@ -90,19 +101,17 @@ export class Games extends Component {
 	}
 
 	handleSubmit(e) {
-		console.log(e.target.value);
 		e.preventDefault();
+		console.log(this.state.options);
 
-		this.setState({
-			count: 2,
-			statusButton: true,
-		});
+		this.setState({ count: 2 });
 		const newPost = {
-			answer: e.target.value,
+			answer: this.state.options,
 			type_hard: localStorage.getItem('type_hard'),
 			type: this.state.count,
-		}
 
+		}
+		console.log(newPost);
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
 			body: JSON.stringify(newPost),
@@ -116,8 +125,7 @@ export class Games extends Component {
 				console.log(data);
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
-				// localStorage.setItem('token', JSON.stringify(data.data.access_token))
-				window.location = '/games'
+				window.location = '/gamesHard'
 			})
 
 	}

@@ -9,7 +9,7 @@ export class List extends Component {
 		this.handleChangeSelect = this.handleChangeSelect.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.Logout = this.Logout.bind(this);
-		// this.getList = this.getList.bind(this);
+		this.Histori = this.Histori.bind(this);
 	}
 
 	render() {
@@ -21,7 +21,7 @@ export class List extends Component {
 						className="row"
 					>
 						<label
-						className="mb-3"
+							className="mb-3"
 						>
 							Выберите сложность:
 							<select className="form-select w-50 m-auto mt-3" value={this.state.type} onChange={this.handleChangeSelect}>
@@ -33,7 +33,13 @@ export class List extends Component {
 						<input className="btn btn-primary m-auto mt-3 w-50" type="submit" value="Проверить знания" />
 					</form>
 					<button
-						className="btn btn-danger mt-3"
+						className="btn btn-warning m-3"
+						onClick={this.Histori}
+					>
+						Посмотреть историю
+					</button>
+					<button
+						className="btn btn-danger m-3"
 						onClick={this.Logout}
 					>
 						Выйти из профиля
@@ -45,11 +51,11 @@ export class List extends Component {
 
 
 
-	getList() {
-		console.log('tyes');
+	Histori() {
+		window.location = '/history'
 	}
 
-	Logout(){
+	Logout() {
 		localStorage.clear();
 		window.location = '/login'
 	}
@@ -57,9 +63,6 @@ export class List extends Component {
 	handleChangeSelect(e) {
 		this.setState({ type: e.target.value });
 	}
-	// SendTask(){
-	//     console.log(this.state.value);
-	// }
 
 	handleSubmit(e) {
 		e.preventDefault();
@@ -84,7 +87,12 @@ export class List extends Component {
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type_hard', JSON.stringify(+this.state.type));
 				localStorage.setItem('type', 1);
-				window.location = '/games'
+				if (+this.state.type === 1) {
+					window.location = '/games'
+				} else if (+this.state.type === 2) {
+					window.location = '/gamesHard'
+				}
+				
 			})
 	}
 }
