@@ -86,7 +86,6 @@ export class GamesHard extends Component {
 				count: count,
 				seconds: arrayItem.data.time,
 			});
-			console.log(arrayItem);
 		} else {
 			window.location = '/history'
 		}
@@ -102,7 +101,6 @@ export class GamesHard extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state.options);
 
 		this.setState({ count: 2 });
 		const newPost = {
@@ -111,7 +109,6 @@ export class GamesHard extends Component {
 			type: this.state.count,
 
 		}
-		console.log(newPost);
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
 			body: JSON.stringify(newPost),
@@ -122,7 +119,6 @@ export class GamesHard extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
 				window.location = '/gamesHard'

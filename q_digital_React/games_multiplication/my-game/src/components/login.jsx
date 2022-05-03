@@ -99,7 +99,6 @@ export class Login extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		localStorage.clear();
-		console.log('yes', this.state.login, this.state.password);
 
 
 		const newPost = {

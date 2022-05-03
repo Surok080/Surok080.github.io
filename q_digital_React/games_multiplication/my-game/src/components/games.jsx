@@ -57,9 +57,8 @@ export class Games extends Component {
 	}
 
 	handleChangeAnswer(e) {
-		console.log(e);
 		this.setState({ options: e.target.value });
-		console.log(this.state.options);
+		
 	}
 
 	componentDidMount() {
@@ -75,7 +74,6 @@ export class Games extends Component {
 				count: count,
 				seconds: arrayItem.data.time,
 			});
-			console.log(arrayItem);
 		} else {
 			window.location = '/history'
 		}
@@ -90,7 +88,6 @@ export class Games extends Component {
 	}
 
 	handleSubmit(e) {
-		console.log(e.target.value);
 		e.preventDefault();
 
 		this.setState({
@@ -113,7 +110,6 @@ export class Games extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
 				// localStorage.setItem('token', JSON.stringify(data.data.access_token))
