@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/q_digital_React/games_multiplication/my-game/static/css/main.f7ab120e.css",
+    "main.js": "/q_digital_React/games_multiplication/my-game/static/js/main.201419ea.js",
+    "static/js/787.8ac135ba.chunk.js": "/q_digital_React/games_multiplication/my-game/static/js/787.8ac135ba.chunk.js",
+    "index.html": "/q_digital_React/games_multiplication/my-game/index.html",
+    "main.f7ab120e.css.map": "/q_digital_React/games_multiplication/my-game/static/css/main.f7ab120e.css.map",
+    "main.201419ea.js.map": "/q_digital_React/games_multiplication/my-game/static/js/main.201419ea.js.map",
+    "787.8ac135ba.chunk.js.map": "/q_digital_React/games_multiplication/my-game/static/js/787.8ac135ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f7ab120e.css",
+    "static/js/main.201419ea.js"
+  ]
+}
