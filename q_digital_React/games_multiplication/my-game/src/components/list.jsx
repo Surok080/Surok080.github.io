@@ -87,11 +87,11 @@ export class List extends Component {
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type_hard', JSON.stringify(+this.state.type));
 				localStorage.setItem('type', 1);
-				if (+this.state.type === 1) {
+				// if (+this.state.type === 1) {
 					window.location = '/games'
-				} else if (+this.state.type === 2) {
-					window.location = '/gamesHard'
-				}
+				// } else if (+this.state.type === 2) {
+				// 	window.location = '/gamesHard'
+				// }
 
 			})
 	}

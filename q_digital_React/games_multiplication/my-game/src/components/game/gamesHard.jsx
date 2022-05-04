@@ -34,6 +34,9 @@ export class GamesHard extends Component {
 				<div
 					className='col w-75 m-auto '
 				>
+
+
+
 					<form onSubmit={this.handleSubmit}  >
 						<label className="mb-4 p-1 w-25">
 							Ваш ответ
@@ -52,6 +55,8 @@ export class GamesHard extends Component {
 
 					</form>
 				</div>
+
+
 
 				<br></br>
 				<button className='p-2 m-3 btn-outline-danger btn-lg w-25' onClick={this.backToList}>Stop Game</button>
@@ -102,7 +107,6 @@ export class GamesHard extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state.options);
 
 		this.setState({ count: 2 });
 		const data = {

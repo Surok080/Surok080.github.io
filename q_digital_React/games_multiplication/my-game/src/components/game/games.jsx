@@ -36,11 +36,16 @@ export class Games extends Component {
 				<div
 					className='col w-75 m-auto '
 				>
+
+
+
 					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[0]} onClick={this.handleSubmit}>{optionArray[0]}</button>
 					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[1]} onClick={this.handleSubmit}>{optionArray[1]}</button>
 					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[2]} onClick={this.handleSubmit}>{optionArray[2]}</button>
 					<button disabled={isAuth ? 'disabled' : ''} className='p-2 m-3 btn-outline-warning text-dark btn-lg w-25' value={optionArray[3]} onClick={this.handleSubmit}>{optionArray[3]}</button>
 				</div>
+
+
 
 				<br></br>
 				<button className='p-2 m-3 btn-outline-danger btn-lg w-25' onClick={this.backToList}>Stop Game</button>
@@ -57,9 +62,7 @@ export class Games extends Component {
 	}
 
 	handleChangeAnswer(e) {
-		console.log(e);
 		this.setState({ options: e.target.value });
-		console.log(this.state.options);
 	}
 
 	componentDidMount() {
@@ -90,8 +93,9 @@ export class Games extends Component {
 	}
 
 	handleSubmit(e) {
-		console.log(e.target.value);
 		e.preventDefault();
+		console.log(e.target.value);
+
 
 		this.setState({
 			count: 2,

@@ -8,7 +8,7 @@ import { History } from './components/history';
 import { Component } from "react";
 import { Protected } from './components/protected/protected';
 import { ProtectedGame } from './components/protected/protectedGame';
-import { GamesHard } from './components/game/gamesHard';
+// import { GamesHard } from './components/game/gamesHard';
 import { ProtectedHistory } from './components/protected/protectedHistory';
 
 
@@ -23,7 +23,7 @@ export class App extends Component {
 				<Route path='/auth' element={<Auth />} />
 				<Route path='/list' element={<Protected component={List} />} />
 				<Route path='/games' element={<ProtectedGame component={Games} />} />
-				<Route path='/gamesHard' element={<ProtectedGame component={GamesHard} />} />
+				{/* <Route path='/gamesHard' element={<ProtectedGame component={GamesHard} />} /> */}
 				<Route path='/history' element={<ProtectedHistory component={History} />} />
 			</Routes>
 		);
