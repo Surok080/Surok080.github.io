@@ -8,8 +8,8 @@ export class List extends Component {
 		this.state = { type: '1' };
 		this.handleChangeSelect = this.handleChangeSelect.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.Logout = this.Logout.bind(this);
-		this.Histori = this.Histori.bind(this);
+		this.logOut = this.logOut.bind(this);
+		this.history = this.history.bind(this);
 	}
 
 	render() {
@@ -34,13 +34,13 @@ export class List extends Component {
 					</form>
 					<button
 						className="btn btn-warning m-3"
-						onClick={this.Histori}
+						onClick={this.history}
 					>
 						Посмотреть историю
 					</button>
 					<button
 						className="btn btn-danger m-3"
-						onClick={this.Logout}
+						onClick={this.logOut}
 					>
 						Выйти из профиля
 					</button>
@@ -51,11 +51,11 @@ export class List extends Component {
 
 
 
-	Histori() {
+	history() {
 		window.location = '/history'
 	}
 
-	Logout() {
+	logOut() {
 		localStorage.clear();
 		window.location = '/login'
 	}

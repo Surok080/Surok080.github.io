@@ -5,7 +5,7 @@ import { Component } from "react";
 export class History extends Component {
 	constructor(props) {
 		super(props);
-		this.Logout = this.Logout.bind(this);
+		this.logOut = this.logOut.bind(this);
 		this.goToList = this.goToList.bind(this);
 	}
 
@@ -52,7 +52,7 @@ export class History extends Component {
 					</button>
 					<button
 						className="btn btn-danger mt-3"
-						onClick={this.Logout}
+						onClick={this.logOut}
 					>
 						Выйти из профиля
 					</button>
@@ -62,7 +62,7 @@ export class History extends Component {
 			</>
 		);
 	}
-	Logout() {
+	logOut() {
 		localStorage.clear();
 		window.location = '/login';
 	}
