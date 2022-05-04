@@ -72,7 +72,7 @@ export class Auth extends Component {
 			.then((data) => {
 				if (data.status) {
 					alert('Регистрация прошла успешно')
-					window.location = '/login';
+					this.props.navigate('/login')
 				} else {
 					let error = data.errors[Object.keys(data.errors)[0]];
 					alert(error[Object.keys(error)[0]])

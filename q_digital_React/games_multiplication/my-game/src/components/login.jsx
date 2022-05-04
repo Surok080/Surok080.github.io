@@ -89,11 +89,11 @@ export class Login extends Component {
 
 	regOut() {
 		localStorage.clear();
-		window.location = '/auth';
+		this.props.navigate('/auth')
 	}
 
 	goToList() {
-		window.location = '/list';
+		this.props.navigate('/list')
 	}
 
 	handleSubmit(e) {

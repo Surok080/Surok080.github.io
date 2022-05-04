@@ -6,11 +6,20 @@ export class Protected extends Component {
 
 	render() {
 		const Component = this.props.component;
-		const isAuth = Boolean(localStorage.getItem('token'))
+		let isAuth;
+		if (this.props.historyToken) {
+			const localItems = JSON.parse(localStorage.getItem('items'));
+			if (localItems) {
+				isAuth = Boolean(localItems.data.questions);
+			}
+		} else {
+			isAuth = Boolean(localStorage.getItem(this.props.localItem))
+		}
+
 
 		return (
 			<div>
-				{isAuth ? <Component /> : <Navigate to='/login' replace />}
+				{isAuth ? <Component /> : <Navigate to={this.props.address} replace />}
 			</div>
 		)
 	}
