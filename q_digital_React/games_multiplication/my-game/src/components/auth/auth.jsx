@@ -10,7 +10,7 @@ export class Auth extends Component {
 		super(props);
 		this.state = { login: "", user: "", password: '', password_confirmation: '' };
 		this.handleChangeLogin = this.handleChangeLogin.bind(this);
-		this.handleChangeUsername = this.handleChangeUsername.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 		this.handleChangePassword = this.handleChangePassword.bind(this);
 		this.handleChangepassword_confirmation = this.handleChangepassword_confirmation.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,13 +29,13 @@ export class Auth extends Component {
 						Регистрация
 					</label>
 					<br />
-					<Input placeholder = "username" name='user' dataState={this.state.user} input={this.handleChangeUsername} />
+					<Input type='text' placeholder="username" name='user' dataState={this.state.user} input={this.handleChange} />
 					<br />
-					<Input placeholder="email" name='login' dataState={this.state.login} input={this.handleChangeLogin} />
+					<Input type='email' placeholder="email" name='login' dataState={this.state.login} input={this.handleChange} />
 					<br />
-					<Input placeholder="пароль" name='password' dataState={this.state.password} input={this.handleChangePassword} />
+					<Input type='password' placeholder="пароль" name='password' dataState={this.state.password} input={this.handleChange} />
 					<br />
-					<Input placeholder="пароль еще раз" name='password_confirmation' dataState={this.state.password} input={this.handleChangepassword_confirmation} />
+					<Input type='password' placeholder="пароль еще раз" name='password_confirmation' dataState={this.state.password_confirmation} input={this.handleChange} />
 
 					<br />
 					<button
@@ -49,18 +49,10 @@ export class Auth extends Component {
 		);
 	}
 
-	handleChangeLogin(e) {
-		this.setState({ login: e.target.value });
+
+	handleChange(e, nameState) {
+		this.setState({ [nameState]: e.target.value });
 	}
-	handleChangeUsername(e, nameState) {
-		this.setState({ user: e.target.value });
-	}
-	handleChangepassword_confirmation(e) {
-		this.setState({ password_confirmation: e.target.value });
-	}
-	handleChangePassword(e) {
-		this.setState({ password: e.target.value });
-	} // yes
 
 	handleSubmit(e) {
 		e.preventDefault();

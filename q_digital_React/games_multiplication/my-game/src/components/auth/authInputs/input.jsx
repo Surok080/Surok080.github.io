@@ -13,6 +13,7 @@ export class Input extends Component {
 		return (
 			<div>
 				<input
+					type={this.props.type}
 					className='form-control w-50 text-center m-auto'
 					onChange={(e) => this.handleChangeUsername(e, this.props.name)}
 					value={this.props.dataState}
@@ -23,7 +24,7 @@ export class Input extends Component {
 	}
 
 	handleChangeUsername(e, b) {
-		this.props.input(e,b)
+		this.props.input(e, b)
 	}
 
 }
