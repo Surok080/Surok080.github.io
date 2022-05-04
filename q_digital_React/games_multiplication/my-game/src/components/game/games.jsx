@@ -68,8 +68,7 @@ export class Games extends Component {
 	}
 
 	handleChangeAnswer(e) {
-		this.setState({ answer: +e.target.value }
-			, () => console.log(this.state.answer));
+		this.setState({ answer: +e.target.value });
 	}
 
 	handleChangeButton(e) {

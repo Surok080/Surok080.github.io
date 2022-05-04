@@ -14,7 +14,6 @@ export class Auth extends Component {
 	}
 
 	render() {
-		console.log(this.state.user);
 		return (
 			<div
 				className='container w-25 mt-2'

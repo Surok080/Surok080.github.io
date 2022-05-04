@@ -21,7 +21,7 @@ function App(props) {
 			<Route path='/auth' element={<Auth navigate={navigate} /> } />
 			<Route path='/list' element={<Protected component={List} address='/login' localItem='token' />} />
 			<Route path='/games' element={<Protected component={Games} address='/list' localItem='type' />} />
-			<Route path='/history' element={<Protected component={History} address='/list' localItem='type' historyToken = {true} />} />
+			<Route path='/history' element={<Protected component={History} address='/list' localItem='type' historyToken />} />
 			<Route path='/*' element={<Main />} />
 		</Routes>
 	);
