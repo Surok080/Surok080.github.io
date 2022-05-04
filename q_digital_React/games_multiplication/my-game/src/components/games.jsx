@@ -78,7 +78,6 @@ export class Games extends Component {
 				count: count,
 				seconds: arrayItem.data.time,
 			});
-			console.log(arrayItem);
 		} else {
 			window.location = '/history'
 		}
@@ -117,7 +116,6 @@ export class Games extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
 				// localStorage.setItem('token', JSON.stringify(data.data.access_token))

@@ -72,7 +72,6 @@ export class List extends Component {
 			type: 1,
 
 		}
-		// console.log(JSON.parse(localStorage.getItem('token')));
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
 			body: JSON.stringify(data),
@@ -83,7 +82,6 @@ export class List extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type_hard', JSON.stringify(+this.state.type));
 				localStorage.setItem('type', 1);

@@ -56,7 +56,6 @@ export class Auth extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log('yes', this.state.login, this.state.user, this.state.password, this.state.password_confirmation);
 
 		const data = {
 			name: this.state.user,
@@ -74,7 +73,6 @@ export class Auth extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data)
 				if (data.status) {
 					alert('Регистрация прошла успешно')
 					window.location = '/login';
