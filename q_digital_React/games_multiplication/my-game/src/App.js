@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Login } from './components/login';
 import { Auth } from './components/auth/auth';
 import { List } from './components/list';
-import { Games } from './components/games';
+import { Games } from './components/game/games';
 import { History } from './components/history';
 import { Component } from "react";
 import { Protected } from './components/protected/protected';

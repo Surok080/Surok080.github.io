@@ -9,11 +9,8 @@ export class Auth extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { login: "", user: "", password: '', password_confirmation: '' };
-		this.handleChangeLogin = this.handleChangeLogin.bind(this);
+
 		this.handleChange = this.handleChange.bind(this);
-		this.handleChangePassword = this.handleChangePassword.bind(this);
-		this.handleChangepassword_confirmation = this.handleChangepassword_confirmation.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	render() {
