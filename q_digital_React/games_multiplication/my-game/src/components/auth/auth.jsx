@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { Input } from './authInputs/input';
+import { Input } from './authInputs/inputAuth';
 
 
 

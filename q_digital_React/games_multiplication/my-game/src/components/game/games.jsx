@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from "react";
-import { Button } from './gamesButton/button';
+import { Button } from './gamesButton/buttonGames';
+import { InputGames } from './gamesButton/inputGames';
 
 
 export class Games extends Component {
@@ -13,6 +14,7 @@ export class Games extends Component {
 			count: '',
 			seconds: 8,
 			statusButton: false,
+			type_hard: '',
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
@@ -20,14 +22,17 @@ export class Games extends Component {
 	}
 
 	render() {
+		const hardGame = localStorage.getItem('type_hard');
 		const optionArray = this.state.options;
 		const isAuth = Boolean(this.state.statusButton)
 		let element;
-
-		if (this.state.options) {
-				element = this.state.options.map((item, index) => {
-			return <Button key={index} index={index} status={isAuth} option={optionArray} clickFun={this.handleSubmit} />
-		});
+		//Проверить еще сложность от сложности рендерить ипут или кнопки
+		if (this.state.options && +hardGame === 1) {
+			element = this.state.options.map((item, index) => {
+				return <Button key={index} index={index} status={isAuth} option={optionArray} handleSubmit={this.handleSubmit} />
+			});
+		} else if (this.state.options && +hardGame === 2) {
+			element = <InputGames handleSubmit={this.handleSubmit} handleChange={this.handleChangeAnswer} options={this.state.options} />
 		}
 
 		return (
@@ -69,6 +74,7 @@ export class Games extends Component {
 		const user = localStorage.getItem('items');
 		const count = localStorage.getItem('type');
 		let arrayItem = JSON.parse(user);
+
 		if (arrayItem.data.question) {
 			this.interval = setInterval(() => this.tick(), 1000);
 			this.setState({
@@ -93,17 +99,25 @@ export class Games extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(e.target.value);
 
-
-		this.setState({
-			count: 2,
-			statusButton: true,
-		});
-		const data = {
-			answer: e.target.value,
-			type_hard: localStorage.getItem('type_hard'),
-			type: this.state.count,
+		let data;
+		if (+localStorage.getItem('type_hard') === 1) {
+			this.setState({
+				count: 2,
+				statusButton: true,
+			});
+			data = {
+				answer: e.target.value,
+				type_hard: localStorage.getItem('type_hard'),
+				type: this.state.count,
+			}
+		} else if (+localStorage.getItem('type_hard') === 2) {
+			this.setState({ count: 2 });
+			data = {
+				answer: this.state.options,
+				type_hard: localStorage.getItem('type_hard'),
+				type: this.state.count,
+			}
 		}
 
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
