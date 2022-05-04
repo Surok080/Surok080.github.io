@@ -105,16 +105,16 @@ export class GamesHard extends Component {
 		console.log(this.state.options);
 
 		this.setState({ count: 2 });
-		const newPost = {
+		const data = {
 			answer: this.state.options,
 			type_hard: localStorage.getItem('type_hard'),
 			type: this.state.count,
 
 		}
-		console.log(newPost);
+		console.log(data);
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
-			body: JSON.stringify(newPost),
+			body: JSON.stringify(data),
 			headers: {
 				"Authorization": `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
 				"Content-type": "application/json; charset=UTF-8",

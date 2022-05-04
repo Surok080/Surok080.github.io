@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import { Input } from './authInputs/input';
 
 
 
@@ -16,6 +17,7 @@ export class Auth extends Component {
 	}
 
 	render() {
+		console.log(this.state.user);
 		return (
 			<div
 				className='container w-25 mt-2'
@@ -27,35 +29,14 @@ export class Auth extends Component {
 						Регистрация
 					</label>
 					<br />
-					<input
-						className='form-control w-50 text-center m-auto'
-						onChange={this.handleChangeUsername}
-						value={this.state.user}
-						placeholder="username"
-					/>
+					<Input placeholder = "username" name='user' dataState={this.state.user} input={this.handleChangeUsername} />
 					<br />
-					<input
-						className='form-control w-50 text-center m-auto'
-						onChange={this.handleChangeLogin}
-						value={this.state.login}
-						placeholder="email"
-					/>
+					<Input placeholder="email" name='login' dataState={this.state.login} input={this.handleChangeLogin} />
 					<br />
-					<input
-						type='password'
-						className='form-control w-50 text-center m-auto'
-						onChange={this.handleChangePassword}
-						value={this.state.password}
-						placeholder="пароль"
-					/>
+					<Input placeholder="пароль" name='password' dataState={this.state.password} input={this.handleChangePassword} />
 					<br />
-					<input
-						type='password'
-						className='form-control w-50 text-center m-auto'
-						onChange={this.handleChangepassword_confirmation}
-						value={this.state.password_confirmation}
-						placeholder="пароль повторить"
-					/>
+					<Input placeholder="пароль еще раз" name='password_confirmation' dataState={this.state.password} input={this.handleChangepassword_confirmation} />
+
 					<br />
 					<button
 						className="btn btn-success mt-3"
@@ -71,7 +52,7 @@ export class Auth extends Component {
 	handleChangeLogin(e) {
 		this.setState({ login: e.target.value });
 	}
-	handleChangeUsername(e) {
+	handleChangeUsername(e, nameState) {
 		this.setState({ user: e.target.value });
 	}
 	handleChangepassword_confirmation(e) {
@@ -85,7 +66,7 @@ export class Auth extends Component {
 		e.preventDefault();
 		console.log('yes', this.state.login, this.state.user, this.state.password, this.state.password_confirmation);
 
-		const newPost = {
+		const data = {
 			name: this.state.user,
 			email: this.state.login, // also email.login
 			password: this.state.password,
@@ -94,7 +75,7 @@ export class Auth extends Component {
 
 		fetch("https://internsapi.public.osora.ru/api/auth/signup", {
 			method: "POST",
-			body: JSON.stringify(newPost),
+			body: JSON.stringify(data),
 			headers: {
 				"Content-type": "application/json; charset=UTF-8",
 			},

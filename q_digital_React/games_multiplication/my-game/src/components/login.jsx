@@ -102,7 +102,7 @@ export class Login extends Component {
 		console.log('yes', this.state.login, this.state.password);
 
 
-		const newPost = {
+		const data = {
 			email: this.state.login, // also email.login
 			password: this.state.password,
 
@@ -110,7 +110,7 @@ export class Login extends Component {
 
 		fetch("https://internsapi.public.osora.ru/api/auth/login", {
 			method: "POST",
-			body: JSON.stringify(newPost),
+			body: JSON.stringify(data),
 			headers: {
 				"Content-type": "application/json; charset=UTF-8",
 			},

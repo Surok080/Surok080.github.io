@@ -67,7 +67,7 @@ export class List extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		const newPost = {
+		const data = {
 			type_hard: +this.state.type,
 			type: 1,
 
@@ -75,7 +75,7 @@ export class List extends Component {
 		// console.log(JSON.parse(localStorage.getItem('token')));
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
-			body: JSON.stringify(newPost),
+			body: JSON.stringify(data),
 			headers: {
 				"Authorization": `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
 				"Content-type": "application/json; charset=UTF-8",
@@ -92,7 +92,7 @@ export class List extends Component {
 				} else if (+this.state.type === 2) {
 					window.location = '/gamesHard'
 				}
-				
+
 			})
 	}
 }

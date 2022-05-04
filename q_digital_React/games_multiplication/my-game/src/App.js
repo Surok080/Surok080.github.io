@@ -1,7 +1,7 @@
 import { Main } from './components/main';
 import { Routes, Route } from 'react-router-dom'
 import { Login } from './components/login';
-import { Auth } from './components/auth';
+import { Auth } from './components/auth/auth';
 import { List } from './components/list';
 import { Games } from './components/games';
 import { History } from './components/history';

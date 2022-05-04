@@ -97,7 +97,7 @@ export class Games extends Component {
 			count: 2,
 			statusButton: true,
 		});
-		const newPost = {
+		const data = {
 			answer: e.target.value,
 			type_hard: localStorage.getItem('type_hard'),
 			type: this.state.count,
@@ -105,7 +105,7 @@ export class Games extends Component {
 
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
-			body: JSON.stringify(newPost),
+			body: JSON.stringify(data),
 			headers: {
 				"Authorization": `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
 				"Content-type": "application/json; charset=UTF-8",
