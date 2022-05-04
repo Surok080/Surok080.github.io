@@ -15,7 +15,7 @@ export class GamesHard extends Component {
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
-		this.logOut = this.logOut.bind(this);
+		this.backToList = this.backToList.bind(this);
 	}
 
 	render() {
@@ -54,7 +54,7 @@ export class GamesHard extends Component {
 				</div>
 
 				<br></br>
-				<button className='p-2 m-3 btn-outline-danger btn-lg w-25' onClick={this.logOut}>Stop Game</button>
+				<button className='p-2 m-3 btn-outline-danger btn-lg w-25' onClick={this.backToList}>Stop Game</button>
 
 				<br></br>
 			</div>
@@ -96,7 +96,7 @@ export class GamesHard extends Component {
 		clearInterval(this.interval);
 	}
 
-	logOut() {
+	backToList() {
 		window.location = '/list'
 	}
 
