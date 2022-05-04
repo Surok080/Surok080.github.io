@@ -15,8 +15,10 @@ export class Games extends Component {
 			seconds: 8,
 			statusButton: false,
 			type_hard: '',
+			answer: '',
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChangeButton = this.handleChangeButton.bind(this);
 		this.handleChangeAnswer = this.handleChangeAnswer.bind(this);
 		this.backToList = this.backToList.bind(this);
 	}
@@ -26,13 +28,13 @@ export class Games extends Component {
 		const optionArray = this.state.options;
 		const isAuth = Boolean(this.state.statusButton)
 		let element;
-		//Проверить еще сложность от сложности рендерить ипут или кнопки
-		if (this.state.options && +hardGame === 1) {
+	
+		if (Boolean(this.state.options) && +hardGame === 1) {
 			element = this.state.options.map((item, index) => {
-				return <Button key={index} index={index} status={isAuth} option={optionArray} handleSubmit={this.handleSubmit} />
+				return <Button key={index} index={index} status={isAuth} option={optionArray} handleSubmit={this.handleChangeButton} />
 			});
 		} else if (this.state.options && +hardGame === 2) {
-			element = <InputGames handleSubmit={this.handleSubmit} handleChange={this.handleChangeAnswer} options={this.state.options} />
+			element = <InputGames handleSubmit={this.handleSubmit} status={isAuth} handleChange={this.handleChangeAnswer} options={this.state.answer} />
 		}
 
 		return (
@@ -54,7 +56,6 @@ export class Games extends Component {
 				</div>
 				<br></br>
 				<button className='p-2 m-3 btn-outline-danger btn-lg w-25' onClick={this.backToList}>Stop Game</button>
-
 				<br></br>
 			</div>
 		);
@@ -67,7 +68,13 @@ export class Games extends Component {
 	}
 
 	handleChangeAnswer(e) {
-		this.setState({ options: e.target.value });
+		this.setState({ answer: +e.target.value }
+			, () => console.log(this.state.answer));
+	}
+
+	handleChangeButton(e) {
+		this.setState({ answer: e.target.value }
+			, () => this.handleSubmit(e));
 	}
 
 	componentDidMount() {
@@ -100,25 +107,18 @@ export class Games extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		let data;
-		if (+localStorage.getItem('type_hard') === 1) {
-			this.setState({
-				count: 2,
-				statusButton: true,
-			});
-			data = {
-				answer: e.target.value,
-				type_hard: localStorage.getItem('type_hard'),
-				type: this.state.count,
-			}
-		} else if (+localStorage.getItem('type_hard') === 2) {
-			this.setState({ count: 2 });
-			data = {
-				answer: this.state.options,
-				type_hard: localStorage.getItem('type_hard'),
-				type: this.state.count,
-			}
+
+
+		this.setState({
+			count: 2,
+			statusButton: true,
+		});
+		const data = {
+			answer: this.state.answer,
+			type_hard: localStorage.getItem('type_hard'),
+			type: this.state.count,
 		}
+
 
 		fetch("https://internsapi.public.osora.ru/api/game/play", {
 			method: "POST",
@@ -132,7 +132,6 @@ export class Games extends Component {
 			.then((data) => {
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
-				// localStorage.setItem('token', JSON.stringify(data.data.access_token))
 				window.location = '/games'
 			})
 

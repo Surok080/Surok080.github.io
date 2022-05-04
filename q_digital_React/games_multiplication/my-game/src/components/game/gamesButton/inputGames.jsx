@@ -27,7 +27,7 @@ export class InputGames extends Component {
 						value={this.props.options}
 						className='form-control w-50 text-center m-auto'
 					/>
-					<input className="btn btn-primary mt-3" type="submit" value="Отправить" />
+					<input disabled={this.props.status ? 'disabled' : ''} className="btn btn-primary mt-3" type="submit" value="Отправить" />
 				</form>
 
 			</div>
