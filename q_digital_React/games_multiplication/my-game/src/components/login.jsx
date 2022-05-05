@@ -118,7 +118,8 @@ export class Login extends Component {
 			.then((data) => {
 				if (data.status) {
 					localStorage.setItem('token', JSON.stringify(data.data.access_token))
-					window.location = '/list'
+		
+					this.props.navigate('/list')
 				} else if (Object.keys(data.errors).length < 3) {
 					let error = data.errors[Object.keys(data.errors)[0]];
 					alert(error[Object.keys(error)[0]])
