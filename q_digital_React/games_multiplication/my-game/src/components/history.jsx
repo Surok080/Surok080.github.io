@@ -64,9 +64,9 @@ export class History extends Component {
 	}
 	logOut() {
 		localStorage.clear();
-		window.location = '/login';
+		this.props.navigate('/login');
 	}
 	goToList() {
-		window.location = '/list';
+		this.props.navigate('/list');
 	}
 }
