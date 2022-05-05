@@ -52,12 +52,12 @@ export class List extends Component {
 
 
 	history() {
-		window.location = '/history'
+		this.props.navigate('/list')
 	}
 
 	logOut() {
 		localStorage.clear();
-		window.location = '/login'
+		this.props.navigate('/login')
 	}
 
 	handleChangeSelect(e) {
@@ -85,7 +85,7 @@ export class List extends Component {
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type_hard', JSON.stringify(+this.state.type));
 				localStorage.setItem('type', 1);
-					window.location = '/games'
+					this.props.navigate('/games')
 			})
 	}
 }
