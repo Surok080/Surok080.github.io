@@ -91,7 +91,7 @@ export class Games extends Component {
 				seconds: arrayItem.data.time,
 			});
 		} else {
-			window.location = '/history'
+			this.props.navigate('/history')
 		}
 	}
 
@@ -100,7 +100,7 @@ export class Games extends Component {
 	}
 
 	backToList() {
-		window.location = '/list'
+		this.props.navigate('/list')
 	}
 
 	handleSubmit(e) {
@@ -131,7 +131,7 @@ export class Games extends Component {
 			.then((data) => {
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
-				window.location = '/games'
+				this.props.navigate('/games')
 			})
 
 	}
