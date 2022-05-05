@@ -24,7 +24,7 @@ export class Input extends Component {
 	}
 
 	handleChange(e, b) {
-		this.props.input(e, b)
+		this.props.input(e.target.value, b)
 	}
 
 }

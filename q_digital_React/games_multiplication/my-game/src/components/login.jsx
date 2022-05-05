@@ -19,6 +19,7 @@ export class Login extends Component {
 	}
 
 	render() {
+
 		return (
 			<div>
 				<div className='container w-25 mt-2'>
@@ -89,11 +90,11 @@ export class Login extends Component {
 
 	regOut() {
 		localStorage.clear();
-		this.props.navigate('/auth')
+		this.props.navigate("/auth")
 	}
 
 	goToList() {
-		this.props.navigate('/list')
+		this.props.navigate("/list")
 	}
 
 	handleSubmit(e) {
@@ -118,7 +119,7 @@ export class Login extends Component {
 			.then((data) => {
 				if (data.status) {
 					localStorage.setItem('token', JSON.stringify(data.data.access_token))
-		
+
 					this.props.navigate('/list')
 				} else if (Object.keys(data.errors).length < 3) {
 					let error = data.errors[Object.keys(data.errors)[0]];

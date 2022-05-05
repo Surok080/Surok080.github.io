@@ -7,6 +7,7 @@ export class Protected extends Component {
 	render() {
 		const Component = this.props.component;
 		const navigate = this.props.navigate;
+
 		let isAuth;
 		if (this.props.historyToken) {
 			const localItems = JSON.parse(localStorage.getItem('items'));
@@ -17,10 +18,10 @@ export class Protected extends Component {
 			isAuth = Boolean(localStorage.getItem(this.props.localItem))
 		}
 
-
+console.log('asdsad');
 		return (
 			<div>
-				{isAuth ? <Component /> : <Navigate to={this.props.address} navigate={navigate} replace />}
+				{isAuth ? <Component navigate={navigate} /> : <Navigate to={this.props.address} replace />}
 			</div>
 		)
 	}

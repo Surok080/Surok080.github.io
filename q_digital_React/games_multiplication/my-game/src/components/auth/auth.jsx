@@ -8,9 +8,15 @@ import { Input } from './authInputs/inputAuth';
 export class Auth extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { login: "", user: "", password: '', password_confirmation: '' };
+		this.state = {
+			login: "",
+			user: "",
+			password: "",
+			password_confirmation: "",
+		};
 
 		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	render() {
@@ -18,15 +24,16 @@ export class Auth extends Component {
 			<div
 				className='container w-25 mt-2'
 			>
-				<form onSubmit={this.handleSubmit}>
+				<form >
 					<label
 						className="mb-4 p-1 w-25"
 					>
 						Регистрация
 					</label>
 					<br />
-					<Input type='text' placeholder="username" name='user' dataState={this.state.user} input={this.handleChange} />
+					<Input type='text' placeholder="username" name="user" dataState={this.state.user} input={this.handleChange} />
 					<br />
+					{/* <InputGames handleSubmit={this.handleSubmit} status={isAuth} handleChange={this.handleChangeAnswer} options={this.state.answer} /> */}
 					<Input type='email' placeholder="email" name='login' dataState={this.state.login} input={this.handleChange} />
 					<br />
 					<Input type='password' placeholder="пароль" name='password' dataState={this.state.password} input={this.handleChange} />
@@ -35,6 +42,7 @@ export class Auth extends Component {
 
 					<br />
 					<button
+						onClick={this.handleSubmit}
 						className="btn btn-success mt-3"
 					>
 						Регистрация
@@ -47,7 +55,7 @@ export class Auth extends Component {
 
 
 	handleChange(e, nameState) {
-		this.setState({ [nameState]: e.target.value });
+		this.setState({ [nameState]: e });
 	}
 
 	handleSubmit(e) {

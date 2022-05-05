@@ -17,11 +17,12 @@ function App(props) {
 	return (
 		<Routes >
 			<Route path='/' element={<Main />} />
-			<Route path='/login' element={<Login navigate={navigate} />} />
-			<Route path='/auth' element={<Auth navigate={navigate} /> } />
-			<Route path='/list' element={<Protected component={List} address='/login' localItem='token' />} />
-			<Route path='/games' element={<Protected component={Games} address='/list' localItem='type' />} />
-			<Route path='/history' element={<Protected component={History} address='/list' localItem='type' historyToken />} />
+			<Route path='/login' element={<Login navigate={navigate} test='test' />} />
+			<Route path='/auth' element={<Auth navigate={navigate} />} />
+			<Route path='/list' element={<Protected navigate={navigate} component={List} address='/login' localItem='token' />} />
+			<Route path='/games' element={<Games navigate={navigate} />} />
+			{/* <Route path='/games' element={<Protected navigate={navigate} component={Games} address='/list' localItem='type' />} /> */}
+			<Route path='/history' element={<Protected navigate={navigate} component={History} address='/list' localItem='type' historyToken />} />
 			<Route path='/*' element={<Main />} />
 		</Routes>
 	);

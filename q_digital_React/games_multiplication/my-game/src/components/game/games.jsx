@@ -28,7 +28,7 @@ export class Games extends Component {
 		const optionArray = this.state.options;
 		const isAuth = Boolean(this.state.statusButton)
 		let element;
-	
+
 		if (Boolean(this.state.options) && +hardGame === 1) {
 			element = this.state.options.map((item, index) => {
 				return <Button key={index} index={index} status={isAuth} option={optionArray} handleSubmit={this.handleChangeButton} />
@@ -85,13 +85,12 @@ export class Games extends Component {
 			this.interval = setInterval(() => this.tick(), 1000);
 			this.setState({
 				options: arrayItem.data.options,
-				status: arrayItem.data.options,
 				question: arrayItem.data.question,
 				count: count,
 				seconds: arrayItem.data.time,
 			});
-		} else {
-			this.props.navigate('/history')
+			// } else {
+			// 	this.backToList()
 		}
 	}
 
@@ -105,8 +104,6 @@ export class Games extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-
-
 
 		this.setState({
 			count: 2,
@@ -131,7 +128,31 @@ export class Games extends Component {
 			.then((data) => {
 				localStorage.setItem('items', JSON.stringify(data));
 				localStorage.setItem('type', this.state.count);
-				this.props.navigate('/games')
+				console.log('games');
+				if (JSON.parse(localStorage.getItem('items')).data.question) {
+
+
+
+					const user = localStorage.getItem('items');
+					let arrayItem = JSON.parse(user);
+					if (arrayItem.data.question) {
+						this.setState({
+							options: arrayItem.data.options,
+							question: arrayItem.data.question,
+							seconds: arrayItem.data.time,
+							statusButton: false,
+							answer: '',
+						});
+					}
+
+
+
+					// this.props.navigate('/games',{replace:false})
+				} else {
+					this.props.navigate('/history')
+				}
+
+
 			})
 
 	}

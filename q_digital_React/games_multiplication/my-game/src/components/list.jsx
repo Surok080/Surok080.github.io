@@ -52,12 +52,12 @@ export class List extends Component {
 
 
 	history() {
-		this.props.navigate('/list')
+		this.props.navigate("/history")
 	}
 
 	logOut() {
 		localStorage.clear();
-		this.props.navigate('/login')
+		this.props.navigate("/login")
 	}
 
 	handleChangeSelect(e) {
