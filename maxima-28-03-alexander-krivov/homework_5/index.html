@@ -2,33 +2,38 @@
 <html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Homeworks_5</title>
-	<link rel="stylesheet" href="css/style.css">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Homeworks_5</title>
+   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-	<div class="wrapper">
-		<div class="authorization">
-			<form action="#" method="post">
-				<h1>Вход</h1>
-				<label>
-					email
-					<input type="email" placeholder="Введите email">
-				</label>
-				<label>
-					Пароль
-					<input type="email" placeholder="Введите пароль">
-				</label>
-				<label>
-					<input type="checkbox">
-					Я согласен получать обновления на почту
-				</label>
-			</form>
-		</div>
-	</div>
+   <div class="wrapper">
+      <div class="authorization">
+         <form class="authorization__form" action="#" method="post">
+            <h1 class="authorization__title">Вход</h1>
+            <label class="authorization__label">
+               Email
+               <input class="authorization__input" type="email" placeholder="Введите email">
+            </label>
+            <label class="authorization__label">
+               Пароль
+               <input class="authorization__input" type="password" placeholder="Введите пароль">
+            </label>
+            <label class="authorization__label chekbox">
+               <input class="authorization__chekbox" type="checkbox">
+               <span class="authorization__chekbox-item checkbox">
+                  <span class="checkbox__line one-line"></span>
+                  <span class="checkbox__line two-line"></span>
+               </span>
+               Я согласен получать обновления на почту
+            </label>
+            <button class="authorization__button" type="submit">Войти</button>
+         </form>
+      </div>
+   </div>
 </body>
 
 </html>

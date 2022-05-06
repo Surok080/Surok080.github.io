@@ -1,12 +1,285 @@
-.wrapper {
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+*,
+*:before,
+*:after {
+   padding: 0;
+   margin: 0;
+   border: 0;
+   box-sizing: border-box;
+   font-style: normal;
+   font-weight: 700;
 }
+
+html,
+body {
+   font-family: "Roboto", sans-serif;
+   height: 100%;
+}
+
+.wrapper {
+   height: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: linear-gradient(45deg, #cc2b5e, #753a88, red);
+   background-size: 400% 400%;
+   animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+   0% {
+      background-position: 0% 50%;
+   }
+   50% {
+      background-position: 100% 50%;
+   }
+   100% {
+      background-position: 0% 50%;
+   }
+}
+
 .authorization {
-	width: 600px;
-	height: 412px;
-	background-color: rgb(223, 27, 27);
+   margin: 5px;
+   max-width: 600px;
+   max-height: 412px;
+   width: 100%;
+   height: 100%;
+   padding: 15px 45px;
+   background-color: #ffffff75;
+   border-radius: 20px;
+}
+
+.authorization__form {
+   display: flex;
+   flex-direction: column;
+}
+
+.authorization__title {
+   padding-top: 6px;
+   text-align: center;
+   font-size: 50px;
+   line-height: 50px;
+   color: white;
+   margin-bottom: 4px;
+}
+
+.authorization__label {
+   font-size: 16px;
+   line-height: 16px;
+   padding: 13px 0 0 8px;
+   color: white;
+}
+
+.chekbox {
+   padding-top: 16px;
+   cursor: pointer;
+   margin-left: 1.2em;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 16px;
+}
+
+.authorization__input {
+   color: #787878;
+   font-weight: 600;
+   font-size: 20px;
+   height: 50px;
+   margin: 3px 0px 0px -8px;
+   text-align: left;
+   display: flex;
+   flex-direction: column;
+   padding: 6px 15px;
+   width: 100%;
+   border: 1px solid grey;
+   border-radius: 10px;
+   transition: all 0.2s linear;
+}
+
+.authorization__input::placeholder {
+   color: #cccccc;
+}
+
+.authorization__input:focus {
+   outline: none;
+   box-shadow: 0 0 0 0.1em #5f70d0d1, 0 0 0 0.2em #4793fe91;
+   border-radius: 10px;
+}
+
+.authorization__chekbox {
+   position: absolute;
+   /*--alternative--*/
+   /*Знаю что мертвый код, но хочется коментарий по поводу данного метода*/
+   /*-webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;*/
+   /*--/alternative--*/
+   width: 1px;
+   height: 1px;
+   overflow: hidden;
+   clip: rect(0 0 0 0);
+}
+
+.authorization__chekbox-item {
+   position: absolute;
+   margin: -0.15em 0 0 -1.5em;
+   width: 1em;
+   height: 1em;
+   box-shadow: 0 0 0 0.05em grey;
+   border-radius: 0.15em;
+   transition: all 0.2s linear;
+   background-color: #fff;
+}
+
+.checkbox__line {
+   display: none;
+   position: absolute;
+   background-color: white;
+   transform: rotate(45deg);
+   border-radius: 0.4em;
+}
+
+.one-line {
+   top: 0.45em;
+   left: 0.15em;
+   width: 7px;
+   height: 3px;
+   transform: rotate(45deg);
+}
+
+.two-line {
+   top: 0.4em;
+   left: 0.3em;
+   width: 10px;
+   height: 3px;
+   transform: rotate(-45deg);
+}
+
+.authorization__chekbox:checked + .authorization__chekbox-item {
+   background-color: #4793ff;
+}
+
+.authorization__chekbox:checked + * .checkbox__line {
+   display: block;
+}
+
+/*Focus*/
+
+.authorization__chekbox:focus + .authorization__chekbox-item {
+   box-shadow: 0 0 0 0.1em #5f70d0d1, 0 0 0 0.2em #4793fe91;
+}
+
+.authorization__chekbox:checked:focus + .authorization__chekbox-item {
+   box-shadow: 0 0 0 0.1em #5f70d0d1, 0 0 0 0.2em #4793fe91;
+}
+
+/*Disabled*/
+
+.authorization__chekbox:disabled + .authorization__chekbox-item {
+   box-shadow: 0 0 0 0.1em #3f51b5, 0 0 0 0.1em #9c27b0;
+}
+
+.authorization__chekbox:checked:disabled + .authorization__chekbox-item {
+   box-shadow: 0 0 0 0.1em #3f51b5, 0 0 0 0.1em #9c27b0;
+   background-color: grey;
+}
+
+.authorization__button {
+   color: #eee;
+   font-size: 18px;
+   font-weight: 800;
+   padding: 10px;
+   outline: none;
+   width: 150px;
+   margin: 60px auto 0;
+   border-radius: 10px;
+   background-color: rgba(223, 27, 81, 0.88);
+   cursor: pointer;
+   box-shadow: 0 4px 0px -0.05em #9c27b02e;
+   transition: all 0.2s linear;
+}
+
+.authorization__button:hover {
+   transform: translateY(2px);
+   box-shadow: 0 2px 2px 0.05em #9c27b02e;
+}
+
+.authorization__button:active {
+   transform: translateY(4px);
+   box-shadow: 0 0px 2px 0.05em #9c27b02e;
+}
+
+@media (max-width: 768px) {
+   .wrapper {
+      padding: 20px;
+   }
+
+   .authorization {
+      max-width: 100%;
+      max-height: 100%;
+   }
+
+   .authorization__title {
+      padding-top: 18px;
+      font-size: 60px;
+   }
+
+   .authorization__label {
+      padding: 13px 0 0 8px;
+   }
+
+   .authorization__label {
+      font-size: 24px;
+      padding: 17px 0 0 8px;
+   }
+
+   .authorization__input {
+      margin: 8px 0px 2px -8px;
+   }
+
+   .chekbox {
+      padding-top: 19px;
+      font-size: 18px;
+   }
+}
+
+@media (max-width: 666px) {
+   .wrapper {
+      padding: 20px;
+   }
+
+   .authorization {
+      max-width: 100%;
+      max-height: 100%;
+      padding: 20px;
+   }
+
+   .authorization__title {
+      font-size: 45px;
+   }
+
+   .authorization__label {
+      font-size: 20px;
+      padding: 18px 0 0 8px;
+   }
+
+   .chekbox {
+      font-size: 16px;
+   }
+}
+@media (max-width: 479px) {
+   .wrapper {
+      padding: 10px;
+   }
+
+   .authorization {
+      max-width: 100%;
+      max-height: 100%;
+      padding: 20px;
+   }
+
+   .chekbox {
+      font-size: 14px;
+   }
 }
