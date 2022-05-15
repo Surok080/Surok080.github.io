@@ -133,6 +133,8 @@ body {
 }
 
 .item-box__title {
+  color: #61B4CF;
+  text-shadow: 1px 1px 2px black;
   padding: 12px 10px;
 }
 
@@ -194,6 +196,12 @@ body {
 .product-category__link a {
   color: white;
   text-decoration: none;
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
+}
+
+.product-category__link a:hover {
+  text-shadow: 0px 4px 20px #ffd573, 0px 0px 1px #000000;
 }
 
 @media (max-width: 1439px) {
