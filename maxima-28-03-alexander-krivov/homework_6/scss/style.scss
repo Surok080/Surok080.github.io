@@ -1,221 +1,221 @@
 *,
 *:before,
 *:after {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	box-sizing: border-box;
-	font-style: normal;
-	font-weight: 400;
+   padding: 0;
+   margin: 0;
+   border: 0;
+   box-sizing: border-box;
+   font-style: normal;
+   font-weight: 400;
 }
 
 html,
 body {
-	font-family: "Roboto", sans-serif;
-	height: 100%;
+   font-family: "Roboto", sans-serif;
+   height: 100%;
 }
 
 .wrapper {
-	display: flex;
-	min-height: 100vh;
-	overflow: hidden;
-	flex-direction: column;
+   display: flex;
+   min-height: 100vh;
+   overflow: hidden;
+   flex-direction: column;
 }
 
 .container {
-	max-width: 1440px;
-	margin: 0px auto;
-	padding: 0px 15px;
+   max-width: 1440px;
+   margin: 0px auto;
+   padding: 0px 15px;
 }
 
 .header {
-	background: #ffd673;
+   background: #ffd673;
 
-	&__row {
-		padding: 10px 0px;
-		display: flex;
-		align-items: center;
-	}
+   &__row {
+      padding: 10px 0px;
+      display: flex;
+      align-items: center;
+   }
 
-	&__logo img {
-		max-width: 80px;
-		border-radius: 20px;
-	}
+   &__logo img {
+      max-width: 80px;
+      border-radius: 20px;
+   }
 
-	&__title {
-		padding-left: 50px;
-	}
+   &__title {
+      padding-left: 50px;
+   }
 
-	&__title h1 {
-		color: #8f6cd7;
-		font-size: 48px;
-		line-height: 56px;
-		text-shadow: 1px 1px 2px black;
-	}
+   &__title h1 {
+      color: #8f6cd7;
+      font-size: 48px;
+      line-height: 56px;
+      text-shadow: 1px 1px 2px black;
+   }
 }
 
 .main {
-	flex: 1 1 auto;
+   flex: 1 1 auto;
 }
 
 .main-block {
-	padding: 2% 0px;
+   padding: 2% 0px;
 
-	&__row {
-		flex-wrap: wrap;
-		display: flex;
-		margin: 0px -15px;
-	}
+   &__row {
+      flex-wrap: wrap;
+      display: flex;
+      margin: 0px -15px;
+   }
 
-	&__column {
-		flex: 0 1 25%;
-		padding: 0px 1%;
-		margin: 0px 0px 2% 0px;
-	}
+   &__column {
+      flex: 0 1 25%;
+      padding: 0px 1%;
+      margin: 0px 0px 2% 0px;
+   }
 
-	&__items {
-		background-color: #ffd673;
-		border: 1px solid yellow;
-		border-radius: 10px;
-		transition: all 0.3s ease-in-out;
-		cursor: pointer;
+   &__items {
+      background-color: #ffd673;
+      border: 1px solid yellow;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
 
-		&:hover {
-			transform: scale(1.03);
-			box-shadow: 2px 6px 20px #ffd573;
-		}
+      &:hover {
+         transform: scale(1.03);
+         box-shadow: 2px 6px 20px #ffd573;
+      }
 
-		&:active {
-			transform: scale(1.1);
-			box-shadow: 2px 6px 20px #ff8673;
-		}
-	}
+      &:active {
+         transform: scale(1.1);
+         box-shadow: 2px 6px 20px #ff8673;
+      }
+   }
 
-	&__image {
-		padding: 0 0 100% 0;
-		position: relative;
-	}
+   &__image {
+      padding: 0 0 100% 0;
+      position: relative;
+   }
 
-	&__image img {
-		background-color: red;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
-	}
+   &__image img {
+      background-color: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+   }
 
-	&__text {
-		color: #61b4cf;
-		text-shadow: 1px 1px 2px black;
-		padding: 12px 10px;
-		font-size: 190%;
-		line-height: 42px;
-	}
+   &__text {
+      color: #61b4cf;
+      text-shadow: 1px 1px 2px black;
+      padding: 12px 10px;
+      font-size: 190%;
+      line-height: 42px;
+   }
 }
 
 .footer {
-	background-color: #61b4cf;
-	flex: 0 0 auto;
+   background-color: #61b4cf;
+   flex: 0 0 auto;
 
-	&__column {
-		padding: 20px 3%;
-		display: flex;
-	}
+   &__column {
+      padding: 20px 3%;
+      display: flex;
+   }
 
-	&__logo {
-		text-align: end;
-		padding-bottom: 49px;
-	}
+   &__logo {
+      text-align: end;
+      padding-bottom: 49px;
+   }
 
-	&__logo img {
-		width: 181px;
-		height: 181px;
-		border-radius: 10px;
-	}
+   &__logo img {
+      width: 181px;
+      height: 181px;
+      border-radius: 10px;
+   }
 
-	&__copy {
-		text-align: right;
-	}
+   &__copy {
+      text-align: right;
+   }
 }
 
 .product-category {
-	color: rgb(255, 255, 255);
-	width: 100%;
-	gap: 13px;
+   color: rgb(255, 255, 255);
+   width: 100%;
+   gap: 13px;
 
-	&__column {
-		width: 100%;
-		max-width: 300px;
-	}
+   &__column {
+      width: 100%;
+      max-width: 300px;
+   }
 
-	&__title {
-		font-size: 24px;
-		line-height: 28px;
-		padding-bottom: 19px;
-	}
+   &__title {
+      font-size: 24px;
+      line-height: 28px;
+      padding-bottom: 19px;
+   }
 
-	&__link {
-		padding-bottom: 6px;
-		font-size: 18px;
-		line-height: 21px;
-	}
+   &__link {
+      padding-bottom: 6px;
+      font-size: 18px;
+      line-height: 21px;
+   }
 
-	&__link a {
-		color: rgb(255, 255, 255);
-		text-decoration: none;
-		transition: all 0.3s linear;
-	}
+   &__link a {
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      transition: all 0.3s linear;
+   }
 
-	&__link a:hover {
-		text-shadow: 0px 4px 20px #ffd573, 0px 0px 1px #000000;
-	}
+   &__link a:hover {
+      text-shadow: 0px 4px 20px #ffd573, 0px 0px 1px #000000;
+   }
 }
 
 @media (max-width: 767px) {
-	.header {
-		&__logo img {
-			max-width: 60px;
-			border-radius: 20px;
-		}
+   .header {
+      &__logo img {
+         max-width: 60px;
+         border-radius: 20px;
+      }
 
-		&__title h1 {
-			padding-left: 10px;
-			font-size: 26px;
-		}
-	}
+      &__title h1 {
+         padding-left: 10px;
+         font-size: 26px;
+      }
+   }
 
-	.main-block {
-		padding: 10px 0px;
+   .main-block {
+      padding: 10px 0px;
 
-		&__column {
-			flex: 0 1 50%;
-			padding: 0px 1%;
-		}
+      &__column {
+         flex: 0 1 50%;
+         padding: 0px 1%;
+      }
 
-		&__text {
-			font-size: 180%;
-		}
-	}
+      &__text {
+         font-size: 180%;
+      }
+   }
 
-	.footer {
-		&__column {
-			flex-wrap: wrap;
-			text-align: center;
-			justify-content: center;
-			padding: 20px 25px;
-		}
+   .footer {
+      &__column {
+         flex-wrap: wrap;
+         text-align: center;
+         justify-content: center;
+         padding: 20px 25px;
+      }
 
-		&__logo,
-		&__copy {
-			text-align: center;
-			padding-bottom: 15px;
-		}
-	}
+      &__logo,
+      &__copy {
+         text-align: center;
+         padding-bottom: 15px;
+      }
+   }
 
-	.product-category__column {
-		margin-bottom: 20px;
-	}
+   .product-category__column {
+      margin-bottom: 20px;
+   }
 }
