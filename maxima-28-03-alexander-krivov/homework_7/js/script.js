@@ -51,13 +51,13 @@ function operationDefinition(arrArguments) {
 	// return arrArguments.reduce((a, b) =>  `${a} ${inputOperator.value} ${b}`);
 
 	if (inputOperator.value === "+") {
-		return arrArguments.reduce((a, b) => a + b);
+		return 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b);
 	} else if (inputOperator.value === "-") {
-		return arrArguments.reduce((a, b) => a - b);
+		return 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b);
 	} else if (inputOperator.value === "*") {
-		return arrArguments.reduce((a, b) => a * b);
+		return 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b);
 	} else if (inputOperator.value === "/") {
-		return arrArguments.reduce((a, b) => a / b);
+		return 'Результат деления: ' + arrArguments.reduce((a, b) => a / b);
 	}
 }
 
