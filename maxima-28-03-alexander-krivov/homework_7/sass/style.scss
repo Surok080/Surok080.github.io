@@ -26,6 +26,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	padding: 10px;
 }
 
 .form {
@@ -52,6 +53,7 @@ body {
 		padding: 15px;
 		border-radius: 20px;
 		font-size: 16px;
+
 		&::placeholder {
 			font-size: 14px;
 			color: rgb(42, 42, 42);
@@ -60,7 +62,7 @@ body {
 
 	&__button {
 		width: 100%;
-		margin: 38px 0;
+		margin: 38px 0 0 0;
 		padding: 15px;
 		border-radius: 20px;
 		color: white;
