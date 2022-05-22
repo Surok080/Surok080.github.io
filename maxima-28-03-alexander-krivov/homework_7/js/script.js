@@ -48,17 +48,17 @@ function operationDefinition(arrArguments) {
 	let x = 0;
 
 	//Можно было бы обойтись одной строкой, но я так и не понял как преобразовать из строки в символ
-	return arrArguments.reduce((a, b) =>  `${a} ${inputOperator.value} ${b}`);
+	// return arrArguments.reduce((a, b) =>  `${a} ${inputOperator.value} ${b}`);
 
-	// if (inputOperator.value === "+") {
-	// 	return arrArguments.reduce((a, b) => a + b);
-	// } else if (inputOperator.value === "-") {
-	// 	return arrArguments.reduce((a, b) => a - b);
-	// } else if (inputOperator.value === "*") {
-	// 	return arrArguments.reduce((a, b) => a * b);
-	// } else if (inputOperator.value === "/") {
-	// 	return arrArguments.reduce((a, b) => a / b);
-	// }
+	if (inputOperator.value === "+") {
+		return arrArguments.reduce((a, b) => a + b);
+	} else if (inputOperator.value === "-") {
+		return arrArguments.reduce((a, b) => a - b);
+	} else if (inputOperator.value === "*") {
+		return arrArguments.reduce((a, b) => a * b);
+	} else if (inputOperator.value === "/") {
+		return arrArguments.reduce((a, b) => a / b);
+	}
 }
 
 

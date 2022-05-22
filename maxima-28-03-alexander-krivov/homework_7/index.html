@@ -2,35 +2,58 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Homework_7</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Homework_7</title>
+   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
 
-	<form id="form">
-		<label>
-			Number-One
-			<input data-name="Первое" id="numberOne" type="text" placeholder="Введите первое число">
-		</label>
-		<hr>
-		<label>
-			Operator
-			<input id="operator" type="text" placeholder="Введите оператор">
-		</label>
-		<hr>
-		<label>
-			Number-Two
-			<input data-name="Второе" id="numberTwo" type="text" placeholder="Введите второе число">
-		</label>
-		<hr>
-		<button id="button" type="submit">Произвести расчет</button>
-	</form>
-	<hr>
-	<div id="output-form"></div>
-	<script src="js/script.js"></script>
+<body>
+   <!-- ---------------background--------------- -->
+   <div class="waveWrapper waveAnimation">
+      <div class="waveWrapperInner bgTop">
+         <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')">
+         </div>
+      </div>
+      <div class="waveWrapperInner bgMiddle">
+         <div class="wave waveMiddle"
+            style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+      </div>
+      <div class="waveWrapperInner bgBottom">
+         <div class="wave waveBottom"
+            style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+      </div>
+   </div>
+   <!-- ---------------/background--------------- -->
+
+   <div class="container">
+      <form class="form" id="form">
+         <div class="form__row">
+            <label class="form__label">
+               Number-One
+               <input class="form__input" data-name="Первое" id="numberOne" type="text"
+                  placeholder="Введите первое число" autofocus>
+            </label>
+            <label class="form__label">
+               Operator
+               <input class="form__input" id="operator" type="text" placeholder="Введите оператор">
+            </label>
+            <label class="form__label">
+               Number-Two
+               <input class="form__input" data-name="Второе" id="numberTwo" type="text"
+                  placeholder="Введите второе число">
+            </label>
+         </div>
+         <div class="form__row">
+            <div class="output-form" id="output-form"></div>
+            <button class="form__button" id="button" type="submit">Произвести расчет</button>
+         </div>
+      </form>
+   </div>
+
+   <script src="js/script.js"></script>
 </body>
 
 </html>
