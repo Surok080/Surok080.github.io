@@ -50,15 +50,24 @@ function operationDefinition(arrArguments) {
 	//Можно было бы обойтись одной строкой, но я так и не понял как преобразовать из строки в символ
 	// return arrArguments.reduce((a, b) =>  `${a} ${inputOperator.value} ${b}`);
 
-	if (inputOperator.value === "+") {
-		return 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b);
-	} else if (inputOperator.value === "-") {
-		return 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b);
-	} else if (inputOperator.value === "*") {
-		return 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b);
-	} else if (inputOperator.value === "/") {
-		return 'Результат деления: ' + arrArguments.reduce((a, b) => a / b);
-	}
+
+	/**
+	 * На сколько резонно использовать тернарный оператор? Данная строка получается длинее и менее читаема.
+	 */
+	return (inputOperator.value === "+") ? 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b) : (inputOperator.value === "-") ? 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b) : (inputOperator.value === "*") ? 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b) : (inputOperator.value === "/") ? 'Результат деления: ' + arrArguments.reduce((a, b) => a / b) : '';
+
+
+	// if (inputOperator.value === "+") {
+	// 	return 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b);
+	// } else if (inputOperator.value === "-") {
+	// 	return 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b);
+	// } else if (inputOperator.value === "*") {
+	// 	return 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b);
+	// } else if (inputOperator.value === "/") {
+	// 	return 'Результат деления: ' + arrArguments.reduce((a, b) => a / b);
+	// }
+
+
 }
 
 
