@@ -38,14 +38,3 @@ fibonacci();
 fibonacci();
 fibonacci();
 fibonacci();
-
-
-
-// function fibo(num) {
-//    if (num === 1 || num === 2) {
-//       return 1;
-//    } else {
-//       return fibo(num - 1) + fibo(num - 2);
-//    }
-// }
-// console.log(fibo(1));
