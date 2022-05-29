@@ -1,5 +1,5 @@
 const fibonacci = (function () {
-   let counter = 1;
+   let counter = 0;
    return function () {
       counter += 1;
 
@@ -8,7 +8,7 @@ const fibonacci = (function () {
             twoNum = 1,
             result;
 
-         for (let i = 1; i < counter; i++) {
+         for (let i = 0; i < counter; i++) {
             let fiboNum = twoNum;
 
             twoNum = firstNum + twoNum;
@@ -17,6 +17,18 @@ const fibonacci = (function () {
          }
          return result;
       }
+
+      //=====================================================
+      //Решене с использованием рекурсии
+      // function fibo(counter) {
+      //    if (counter === 1 || counter === 2) {
+      //       return 1;
+      //    } else {
+      //       return fibo(counter - 1) + fibo(counter - 2);
+      //    }
+      // }
+      //=====================================================
+
       return console.log(fibo(counter));
    }
 })();
@@ -26,3 +38,14 @@ fibonacci();
 fibonacci();
 fibonacci();
 fibonacci();
+
+
+
+// function fibo(num) {
+//    if (num === 1 || num === 2) {
+//       return 1;
+//    } else {
+//       return fibo(num - 1) + fibo(num - 2);
+//    }
+// }
+// console.log(fibo(1));
