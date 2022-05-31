@@ -19,19 +19,19 @@ function validationForm() {
 	outputForm.textContent = '';
 
 	arrInputNumbers.forEach(element => {
-		if (isNaN(+element.value)) {
+		if (isNaN(+element.value.trim())) {
 			outputForm.textContent = `${element.dataset.name} число не корректно`;
 			return;
 		}
-		if (+element.value.length === 0) {
+		if (+element.value.trim().length === 0) {
 			outputForm.textContent = `${element.dataset.name} число не указано`;
 			return;
 		}
-		if (inputOperator.value.length === 0) {
+		if (inputOperator.value.trim().length === 0) {
 			outputForm.textContent = 'Не введён знак';
 			return;
 		}
-		if (!operator.includes(inputOperator.value)) {
+		if (!operator.includes(inputOperator.value.trim())) {
 			outputForm.textContent = 'Программа не поддерживает такую операцию \n Доступные операции: +, -, *, /';
 			return;
 		}
@@ -39,8 +39,15 @@ function validationForm() {
 		arrArguments.push(+element.value);
 
 		if (arrArguments.length > 1) {
-			outputForm.textContent = operationDefinition(arrArguments);
+			if (operationDefinition(arrArguments) === 'Результат деления: NaN') {
+				outputForm.textContent = 'У нас неопределенность, но зачем нам это..?';
+			} else if (operationDefinition(arrArguments) === 'Результат деления: Infinity') {
+				outputForm.textContent = 'У нас бесконечность, но зачем нам это..?';
+			} else {
+				outputForm.textContent = operationDefinition(arrArguments);
+			}
 		}
+
 	});
 }
 
@@ -48,15 +55,15 @@ function operationDefinition(arrArguments) {
 	let x = 0;
 
 	//Можно было бы обойтись одной строкой, но я так и не понял как преобразовать из строки в символ
-	// return arrArguments.reduce((a, b) =>  `${a} ${inputOperator.value} ${b}`);
+	// return arrArguments.reduce((a, b) =>  `${a} ${inputOperator.value.trim()} ${b}`);
 
 	/**
 	 * На сколько резонно использовать тернарный оператор? Данная строка получается длинее и менее читаема.
 	 */
 
-	// return (inputOperator.value === "+") ? 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b) : (inputOperator.value === "-") ? 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b) : (inputOperator.value === "*") ? 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b) : (inputOperator.value === "/") ? 'Результат деления: ' + arrArguments.reduce((a, b) => a / b) : '';
+	// return (inputOperator.value.trim() === "+") ? 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b) : (inputOperator.value.trim() === "-") ? 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b) : (inputOperator.value === "*") ? 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b) : (inputOperator.value === "/") ? 'Результат деления: ' + arrArguments.reduce((a, b) => a / b) : '';
 
-	switch (inputOperator.value) {
+	switch (inputOperator.value.trim()) {
 		case "+":
 			return 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b);
 		case "-":
@@ -73,9 +80,9 @@ function operationDefinition(arrArguments) {
 	 * Классический if
 	 */
 
-	// if (inputOperator.value === "+") {
+	// if (inputOperator.value.trim() === "+") {
 	// 	return 'Результат сложения: ' + arrArguments.reduce((a, b) => a + b);
-	// } else if (inputOperator.value === "-") {
+	// } else if (inputOperator.value.trim() === "-") {
 	// 	return 'Результат вычетания: ' + arrArguments.reduce((a, b) => a - b);
 	// } else if (inputOperator.value === "*") {
 	// 	return 'Результат умножения: ' + arrArguments.reduce((a, b) => a * b);
