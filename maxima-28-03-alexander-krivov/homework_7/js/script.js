@@ -6,7 +6,10 @@ const inputOperator = document.getElementById('operator');
 const inputbutton = document.getElementById('button');
 const outputForm = document.getElementById('output-form');
 const operator = ['+', '-', '/', '*'];
-
+//Есть ли смысл все эти переменные закинуть в функцию validationForm() что бы 
+//считывание параметров происходило только при нажатии на кнопку, и тогда уже можно будет
+//для переменных сразу задавать .....value.trim(); и везде не писать. Это позволит
+//немного сократить код
 inputbutton.addEventListener('click', (e) => {
 	e.preventDefault();
 	validationForm();
