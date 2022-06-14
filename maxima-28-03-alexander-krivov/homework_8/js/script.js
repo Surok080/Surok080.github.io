@@ -1,34 +1,20 @@
 const fibonacci = (function () {
-	// let counter = 0;
-	let firstNum = 0,
-		twoNum = 1;
+  let firstNum = 0,
+    twoNum = 1;
 
-	return function () {
-		// counter += 1;
+  return function () {
 
-		function fibo() {
-			let fiboNum = twoNum;
+    function fibo() {
+      let fiboNum = twoNum;
 
-			twoNum = firstNum + twoNum;
-			firstNum = fiboNum;
+      twoNum = firstNum + twoNum;
+      firstNum = fiboNum;
 
-			return fiboNum;
-		}
+      return fiboNum;
+    }
 
-		//=====================================================
-		//Решене с использованием рекурсии
-		// function fibo(counter) {
-		//    if (counter === 1 || counter === 2) {
-		//       return 1;
-		//    } else {
-		//       return fibo(counter - 1) + fibo(counter - 2);
-		//    }
-		// }
-		//=====================================================
-
-		return console.log(fibo());
-		// return console.log(fibo(counter));
-	}
+    return console.log(fibo());
+  }
 })();
 
 fibonacci();
