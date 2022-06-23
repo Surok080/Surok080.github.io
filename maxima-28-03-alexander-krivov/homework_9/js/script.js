@@ -6,13 +6,8 @@ const object = {
 					level_5end1key: 'level_end1',
 					level_5end2key: 'level_end2',
 					level_5end3key: 'level_end3',
-				},
-			},
-			level3_2: {
-				level4_2: {
-					level_5endkey: 'level_end4'
-				},
-			},
+				}
+			}
 		}
 	}
 }
