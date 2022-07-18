@@ -37,7 +37,7 @@ function objConsoleLog(object) {
       console.log(propSpace + key);
       level++;
       level >= 1 ? propSpace += '-' : propSpace += '';
-      test(object[key])
+      objConsoleLog(object[key])
     } else {
       console.log(`${propSpace + key} : ${object[key]}`);
     }
